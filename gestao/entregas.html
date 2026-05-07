@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../plataforma/style.css">
+    <title>Gestão de Entregas</title>
+</head>
+<body class="gestao-page">
+    <!-- Menu lateral fixo da gestão -->
+    <header class="header-gestao">
+        <div class="area-logo-gestao">
+            <img src="../plataforma/src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text-gestao">
+                <h1>EatGo</h1>
+                <p class="brand-tag-gestao">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Dashboard">Dashboard</a></li>
+                <li><a href="pedidos.html" aria-label="Estabelecimentos">Gestão de Pedidos</a></li>
+                <li><a href="vendas.html" aria-label="Vendas">Gestão de Vendas</a></li>
+                <li><a class="ativo" href="entregas.html" aria-label="Entregas">Gestão de Entregas</a></li>
+                <li><a href="cardapio.html" aria-label="Cardápio">Cardápio</a></li>
+                <li><a href="configuracoes.html" aria-label="Configurações">Configurações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Painel de entregas e operação logística -->
+    <main class="gestao-main">
+        <section class="gestao-page-header">
+            <div>
+                <p class="section-tag">Operação logística</p>
+                <h2>Controle de entregas em tempo real</h2>
+                <p class="gestao-page-texto">
+                    Acompanhe rotas ativas, e pedidos que precisam de intervenção imediata.
+                </p>
+            </div>
+            <div class="gestao-page-acoes">
+                <a class="btn-secundario" href="vendas.html">Ver vendas</a>
+                <a class="btn-primario" href="configuracoes.html">Ajustar áreas</a>
+            </div>
+        </section>
+
+        <section class="gestao-metricas">
+            <article class="gestao-card-metrica">
+                <span class="gestao-card-label">Entregas ativas</span>
+                <strong>12</strong>
+                <p>3 saindo agora da loja</p>
+            </article>
+            <article class="gestao-card-metrica">
+                <span class="gestao-card-label">Tempo médio</span>
+                <strong>27 min</strong>
+                <p>2 min abaixo da meta</p>
+            </article>
+        </section>
+
+        <section class="gestao-grid gestao-grid-wide">
+            <article class="gestao-painel">
+                <div class="gestao-topo-card">
+                    <div>
+                        <p class="section-tag">Rotas em andamento</p>
+                        <h3>Fila operacional</h3>
+                    </div>
+                </div>
+
+                <div class="gestao-lista-status">
+                    <div class="gestao-status-item">
+                        <span class="status-dot alerta"></span>
+                        <div>
+                            <strong>Atrasado</strong>
+                            <p>Cliente: Ana Clara</p>
+                        </div>
+                        <b>1</b>
+                    </div>
+                    <div class="gestao-status-item">
+                        <span class="status-dot warning"></span>
+                        <div>
+                            <strong>Atenção</strong>
+                            <p>Cliente: Camila Santos</p>
+                        </div>
+                        <b>2</b>
+                    </div>
+                    <div class="gestao-status-item">
+                        <span class="status-dot entrega"></span>
+                        <div>
+                            <strong>No prazo</strong>
+                            <p>Cliente: João Pereira</p>
+                        </div>
+                        <b>9</b>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="gestao-painel gestao-painel-full">
+            <div class="gestao-topo-card">
+                <div>
+                    <p class="section-tag">Entregas</p>
+                    <h3>Entregas concluídas</h3>
+                </div>
+            </div>
+
+            <div class="gestao-tabela">
+                <div class="gestao-tabela-linha gestao-tabela-head">
+                    <span>Pedido</span>
+                    <span>Cliente</span>
+                    <span>Entregador</span>
+                    <span>Tempo</span>
+                    <span>Status</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>#1052</span>
+                    <span>Bianca Moraes</span>
+                    <span>João</span>
+                    <span>18:35</span>
+                    <span class="status-badge success">Concluída</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>#1048</span>
+                    <span>Eduardo Melo</span>
+                    <span>Camila</span>
+                    <span>18:42</span>
+                    <span class="status-badge success">Concluída</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>#1046</span>
+                    <span>Ana Clara</span>
+                    <span>Bruno</span>
+                    <span>18:20</span>
+                    <span class="status-badge success">Concluída</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>#1044</span>
+                    <span>Felipe Rocha</span>
+                    <span>Larissa</span>
+                    <span>18:48</span>
+                    <span class="status-badge success">Concluída</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../plataforma/index.js"></script>
+</body>
+</html>

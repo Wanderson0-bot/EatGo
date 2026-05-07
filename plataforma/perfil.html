@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Meu Perfil | EatGo</title>
+</head>
+<body>
+    <header>
+        <div class="area-logo">
+            <img src="src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text">
+                <h1>EatGo</h1>
+                <p class="brand-tag">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Home"><img src="https://img.icons8.com/?size=100&id=BE56i0LQZMIW&format=png&color=000000" alt="Home"></a></li>
+                <li><a href="carrinho.html" aria-label="Carrinho"><img src="https://img.icons8.com/?size=100&id=13014&format=png&color=000000" alt="Carrinho"></a></li>
+                <li><a href="acessibilidade.html" aria-label="Acessibilidade"><img src="https://img.icons8.com/?size=100&id=OCXqgxuKRsRU&format=png&color=000000" alt="Acessibilidade"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="perfil-page">
+        <section class="perfil-hero">
+            <p class="section-tag">Bem-vindo de volta!</p>
+            <h1>Meu Perfil</h1>
+            <p class="perfil-subtitulo">Gerencie suas informações, pedidos e preferências para uma experiência personalizada.</p>
+        </section>
+
+        <div class="perfil-layout">
+            <section class="perfil-resumo">
+                <div class="perfil-avatar" id="perfil-avatar">JS</div>
+                <div class="perfil-resumo-texto">
+                    <span class="perfil-status" id="perfil-status">Cliente premium</span>
+                    <h2 id="perfil-nome-resumo">Joao Silva</h2>
+                    <p id="perfil-resumo-texto">Pedidos rápidos, endereço salvo e tudo pronto para sua próxima refeição.</p>
+                </div>
+
+                <div class="perfil-badges">
+                    <span id="perfil-pedidos-mes">12 pedidos este mes</span>
+                    <span id="perfil-pagamento">Pagamento principal salvo</span>
+                </div>
+            </section>
+
+            <section class="perfil-info">
+                <div class="perfil-card">
+                    <div class="perfil-card-topo">
+                        <h2>Informações pessoais</h2>
+                        <button class="perfil-edit-btn" type="button">Editar perfil</button>
+                    </div>
+
+                    <div class="perfil-dados">
+                        <div class="perfil-dado">
+                            <span>Nome</span>
+                            <strong id="perfil-nome">Joao Silva</strong>
+                        </div>
+                        <div class="perfil-dado">
+                            <span>Email</span>
+                            <strong id="perfil-email">joao.silva@email.com</strong>
+                        </div>
+                        <div class="perfil-dado">
+                            <span>Telefone</span>
+                            <strong id="perfil-telefone">(11) 99999-0000</strong>
+                        </div>
+                        <div class="perfil-dado">
+                            <span>Endereço</span>
+                            <strong id="perfil-endereco">Rua das Flores, 120 - Centro</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="perfil-card">
+                    <h2>Preferências</h2>
+                    <div class="perfil-preferencias" id="perfil-preferencias">
+                        <span>Entrega padrao</span>
+                        <span>Cartão final 2458</span>
+                        <span>Notificacoes ativas</span>
+                        <span>Cupons e ofertas</span>
+                    </div>
+                </div>
+
+                <div class="perfil-card">
+                    <div class="perfil-card-topo">
+                        <h2>Meus pedidos</h2>
+                    </div>
+                    <p class="perfil-pedidos-vazio" id="perfil-pedidos-vazio">Seus pedidos aparecerão aqui assim que forem criados.</p>
+                    <div class="perfil-pedidos-lista" id="perfil-pedidos-lista"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>EatGo</h2>
+          <p>Seu delivery favorito para pedir bem, rápido e com praticidade todos os dias.</p>
+        </div>
+
+        <div class="footer-links">
+          <h3>Explorar</h3>
+          <ul>
+            <li><a href="index.html#listaEstabelecimentos">Estabelecimentos</a></li>
+            <li><a href="index.html#listaPromocoes">Promoções</a></li>
+            <li><a href="carrinho.html">Meu carrinho</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h3>Suporte</h3>
+          <ul>
+            <li><a href="central-ajuda.html">Central de ajuda</a></li>
+            <li><a href="https://wa.me/558581101269">Fale conosco</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-info">
+          <h3>Atendimento</h3>
+          <p>Plataforma: 24h</p>
+          <span>Seus dados ficam salvos neste navegador</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>2026 EatGo. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

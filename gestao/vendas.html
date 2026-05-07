@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../plataforma/style.css">
+    <title>Gestão de Vendas</title>
+</head>
+<body class="gestao-page">
+    <!-- Menu lateral fixo da gestão -->
+    <header class="header-gestao">
+        <div class="area-logo-gestao">
+            <img src="../plataforma/src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text-gestao">
+                <h1>EatGo</h1>
+                <p class="brand-tag-gestao">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Dashboard">Dashboard</a></li>
+                <li><a href="pedidos.html" aria-label="Estabelecimentos">Gestão de Pedidos</a></li>
+                <li><a class="ativo" href="vendas.html" aria-label="Vendas">Gestão de Vendas</a></li>
+                <li><a href="entregas.html" aria-label="Entregas">Gestão de Entregas</a></li>
+                <li><a href="cardapio.html" aria-label="Cardápio">Cardápio</a></li>
+                <li><a href="configuracoes.html" aria-label="Configurações">Configurações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Painel comercial e de vendas -->
+    <main class="gestao-main">
+        <section class="gestao-page-header">
+            <div>
+                <p class="section-tag">Gestão comercial</p>
+                <h2>Vendas, metas e canais em um único painel</h2>
+                <p class="gestao-page-texto">
+                    Visualize o desempenho do dia, acompanhe os pedidos concluídos e identifique os horários de maior demanda.
+                </p>
+            </div>
+            <div class="gestao-page-acoes">
+                <a class="btn-secundario" href="index.html">Voltar ao dashboard</a>
+                <a class="btn-primario" href="cardapio.html">Criar promoção</a>
+            </div>
+        </section>
+
+        <section class="gestao-metricas">
+            <article class="gestao-card-metrica">
+                <span class="gestao-card-label">Total vendido</span>
+                <strong>R$ 7.920</strong>
+                <p>162 pedidos fechados hoje</p>
+            </article>
+            <article class="gestao-card-metrica">
+                <span class="gestao-card-label">Canal principal</span>
+                <strong>Delivery</strong>
+                <p>63% das vendas vieram da plataforma</p>
+            </article>
+            <article class="gestao-card-metrica">
+                <span class="gestao-card-label">Horário pico</span>
+                <strong>19h - 21h</strong>
+                <p>Maior concentração de pedidos</p>
+            </article>
+        </section>
+
+        <section class="gestao-grid">
+            <article class="gestao-painel">
+                <div class="gestao-topo-card">
+                    <div>
+                        <p class="section-tag">Resumo financeiro</p>
+                        <h3>Receita por periodo</h3>
+                    </div>
+                </div>
+
+                <div class="gestao-meta-lista">
+                    <div class="gestao-meta-item">
+                        <div class="gestao-meta-topo">
+                            <strong>Manhã</strong>
+                            <span>R$ 2.140</span>
+                        </div>
+                        <div class="gestao-barra"><span style="width: 52%"></span></div>
+                    </div>
+                    <div class="gestao-meta-item">
+                        <div class="gestao-meta-topo">
+                            <strong>Tarde</strong>
+                            <span>R$ 1.180</span>
+                        </div>
+                        <div class="gestao-barra"><span style="width: 28%"></span></div>
+                    </div>
+                    <div class="gestao-meta-item">
+                        <div class="gestao-meta-topo">
+                            <strong>Noite</strong>
+                            <span>R$ 4.600</span>
+                        </div>
+                        <div class="gestao-barra"><span style="width: 88%"></span></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="gestao-painel">
+                <div class="gestao-topo-card">
+                    <div>
+                        <p class="section-tag">Produtos campeões</p>
+                        <h3>Itens mais vendidos</h3>
+                    </div>
+                </div>
+
+                <ul class="gestao-ranking">
+                    <li><span>1</span><div><strong>Combo smash duplo</strong><p>34 unidades</p></div><b>R$ 1.666</b></li>
+                    <li><span>2</span><div><strong>Batata cheddar</strong><p>29 unidades</p></div><b>R$ 754</b></li>
+                    <li><span>3</span><div><strong>Refrigerante 2L</strong><p>21 unidades</p></div><b>R$ 336</b></li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="gestao-painel gestao-painel-full">
+            <div class="gestao-topo-card">
+                <div>
+                    <p class="section-tag">Pedidos concluídos</p>
+                    <h3>Movimento recente</h3>
+                </div>
+            </div>
+
+            <div class="gestao-tabela">
+                <div class="gestao-tabela-linha gestao-tabela-head">
+                    <span>Pedido</span>
+                    <span>Cliente</span>
+                    <span>Canal</span>
+                    <span>Total</span>
+                    <span>Status</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>#1048</span>
+                    <span>Mariana Alves</span>
+                    <span>EatGo</span>
+                    <span>R$ 52,90</span>
+                    <span class="status-badge success">Pago</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>#1047</span>
+                    <span>Rafael Lima</span>
+                    <span>Retirada</span>
+                    <span>R$ 39,50</span>
+                    <span class="status-badge warning">Separando</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>#1046</span>
+                    <span>Patricia Souza</span>
+                    <span>EatGo</span>
+                    <span>R$ 71,20</span>
+                    <span class="status-badge success">Finalizado</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>#1045</span>
+                    <span>Lucas Teixeira</span>
+                    <span>EatGo</span>
+                    <span>R$ 28,00</span>
+                    <span class="status-badge neutral">Recebido</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../plataforma/index.js"></script>
+</body>
+</html>

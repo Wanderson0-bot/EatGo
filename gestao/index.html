@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../plataforma/style.css">
+    <title>Gestão de Estabelecimentos | EatGo</title>
+</head>
+<body class="gestao-page">
+    <!-- Menu lateral fixo da gestão -->
+    <header class="header-gestao">
+        <div class="area-logo-gestao">
+            <img src="../plataforma/src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text-gestao">
+                <h1>EatGo</h1>
+                <p class="brand-tag-gestao">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a class="ativo" href="index.html" aria-label="Dashboard">Dashboard</a></li>
+                <li><a href="pedidos.html" aria-label="Estabelecimentos">Gestão de Pedidos</a></li>
+                <li><a href="vendas.html" aria-label="Vendas">Gestão de Vendas</a></li>
+                <li><a href="entregas.html" aria-label="Entregas">Gestão de Entregas</a></li>
+                <li><a href="cardapio.html" aria-label="Cardápio">Cardápio</a></li>
+                <li><a href="configuracoes.html" aria-label="Configurações">Configurações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Dashboard principal da gestão -->
+    <main class="gestao-main">
+        <section class="gestao-page-header">
+            <div>
+                <p class="section-tag">Painel de controle</p>
+                <h2 id="dashboard-title">Resumo do seu estabelecimento em um só lugar</h2>
+                <p id="dashboard-restaurante" class="gestao-page-texto">Acompanhe vendas, pedidos ativos e pontos de atenção da operação sem sair do painel principal.</p>
+            </div>
+            <div class="gestao-page-acoes">
+                <a class="btn-secundario" href="entregas.html">Ver entregas</a>
+                <a class="btn-primario" href="cardapio.html">Atualizar cardápio</a>
+            </div>
+        </section>
+
+        <section class="gestao-metricas" aria-label="Indicadores principais">
+            <article class="gestao-card-metrica">
+                <span class="gestao-card-label">Faturamento hoje</span>
+                <strong>R$ 2.480</strong>
+                <p>+18% em relação a ontem</p>
+            </article>
+
+            <article class="gestao-card-metrica">
+                <span class="gestao-card-label">Pedidos em andamento</span>
+                <strong>16</strong>
+                <p>5 aguardando coleta</p>
+            </article>
+
+            <article class="gestao-card-metrica">
+                <span class="gestao-card-label">Ticket médio</span>
+                <strong>R$ 42,30</strong>
+                <p>Baseado nos últimos 7 dias</p>
+            </article>
+        </section>
+
+        <section class="gestao-grid">
+            <article class="gestao-painel">
+                <div class="gestao-topo-card">
+                    <div>
+                        <p class="section-tag">Fluxo do dia</p>
+                        <h3>Status dos pedidos</h3>
+                    </div>
+                </div>
+
+                <div class="gestao-lista-status">
+                    <div class="gestao-status-item">
+                        <span class="status-dot preparo"></span>
+                        <div>
+                            <strong>Em preparo</strong>
+                            <p>8 pedidos na cozinha</p>
+                        </div>
+                        <b>08</b>
+                    </div>
+
+                    <div class="gestao-status-item">
+                        <span class="status-dot entrega"></span>
+                        <div>
+                            <strong>Saiu para entrega</strong>
+                            <p>4 pedidos com entregadores</p>
+                        </div>
+                        <b>04</b>
+                    </div>
+
+                    <div class="gestao-status-item">
+                        <span class="status-dot alerta"></span>
+                        <div>
+                            <strong>Precisam de atenção</strong>
+                            <p>2 pedidos com atraso</p>
+                        </div>
+                        <b>02</b>
+                    </div>
+                </div>
+            </article>
+
+            <article class="gestao-painel">
+                <div class="gestao-topo-card">
+                    <div>
+                        <p class="section-tag">Checklist rápido</p>
+                        <h3>Itens em destaque</h3>
+                    </div>
+                </div>
+
+                <ul class="gestao-checklist">
+                    <li>Revisar disponibilidade dos pratos mais pedidos</li>
+                    <li>Confirmar equipe de entregas do turno da noite</li>
+                    <li>Atualizar banner de promoção do fim de semana</li>
+                    <li>Responder avaliações recentes dos clientes</li>
+                </ul>
+            </article>
+        </section>
+
+    </main>
+    <script src="../plataforma/index.js"></script>
+</body>
+</html>

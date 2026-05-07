@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../plataforma/style.css">
+    <title>Cardápio</title>
+</head>
+<body class="gestao-page">
+    <!-- Menu lateral fixo da gestão -->
+    <header class="header-gestao">
+        <div class="area-logo-gestao">
+            <img src="../plataforma/src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text-gestao">
+                <h1>EatGo</h1>
+                <p class="brand-tag-gestao">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Dashboard">Dashboard</a></li>
+                <li><a href="pedidos.html" aria-label="Estabelecimentos">Gestão de Pedidos</a></li>
+                <li><a href="vendas.html" aria-label="Vendas">Gestão de Vendas</a></li>
+                <li><a href="entregas.html" aria-label="Entregas">Gestão de Entregas</a></li>
+                <li><a class="ativo" href="cardapio.html" aria-label="Cardápio">Cardápio</a></li>
+                <li><a href="configuracoes.html" aria-label="Configurações">Configurações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Gestão dos itens do cardápio -->
+    <main class="gestao-main">
+        <section class="gestao-page-header">
+            <div>
+                <p class="section-tag">Cardápio atual</p>
+                <h2>Visualize o menu ativo e atualize sempre que precisar</h2>
+                <p class="gestao-page-texto">
+                    Veja os produtos disponíveis agora e mantenha o cardápio alinhado com estoque e promoções.
+                </p>
+            </div>
+            <div class="gestao-page-acoes">
+                <a class="btn-secundario" href="vendas.html">Ver desempenho</a>
+                <button class="btn-primario" type="button" id="atualizar-cardapio-button">Atualizar cardápio</button>
+            </div>
+        </section>
+
+        <section class="gestao-painel">
+            <div class="gestao-topo-card">
+                <div>
+                    <p class="section-tag">Atualizar cardápio</p>
+                    <h3 id="cardapio-form-title">Faça mudanças no menu atual</h3>
+                </div>
+            </div>
+
+            <p id="cardapio-form-text">Use esta opção para atualizar preços, mudar disponibilidade ou sincronizar o cardápio com o estoque atual.</p>
+
+            <form id="cardapio-form" class="gestao-form-stack">
+                <div class="gestao-form-grid">
+                    <label class="gestao-campo">
+                        <span>Nome do item</span>
+                        <input type="text" name="nome" required>
+                    </label>
+                    <label class="gestao-campo">
+                        <span>Categoria</span>
+                        <input type="text" name="categoria" placeholder="Lanches, bebidas, sobremesas...">
+                    </label>
+                    <label class="gestao-campo">
+                        <span>Preço</span>
+                        <input type="number" name="preco" min="0.01" step="0.01" required>
+                    </label>
+                    <label class="gestao-campo">
+                        <span>Preço promocional</span>
+                        <input type="number" name="preco_promocional" min="0.01" step="0.01">
+                    </label>
+                    <label class="gestao-campo gestao-campo-full">
+                        <span>Descrição</span>
+                        <input type="text" name="descricao" maxlength="255" placeholder="Descreva o item para o cliente">
+                    </label>
+                    <label class="gestao-campo gestao-campo-full">
+                        <span>Imagem (URL)</span>
+                        <input type="text" name="imagem" placeholder="https://...">
+                    </label>
+                    <label class="gestao-campo">
+                        <span>Disponibilidade</span>
+                        <input type="checkbox" name="ativo" checked>
+                    </label>
+                </div>
+                <div class="gestao-painel-acoes">
+                    <button class="btn-secundario" type="button" id="cardapio-editar-button">Novo item</button>
+                    <button class="btn-secundario" type="button" id="cardapio-cancelar-edicao-button" hidden>Cancelar edição</button>
+                    <button class="btn-primario" type="submit" id="cardapio-salvar-button">Salvar item</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="gestao-painel gestao-painel-full">
+            <div class="gestao-topo-card">
+                <div>
+                    <p class="section-tag">Cardápio atual</p>
+                    <h3>Itens disponíveis agora</h3>
+                </div>
+            </div>
+
+            <div id="cardapio-tabela" class="gestao-tabela">
+                <div class="gestao-tabela-linha gestao-tabela-head">
+                    <span>Item</span>
+                    <span>Categoria</span>
+                    <span>Preço</span>
+                    <span>Status</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>Smash Salad</span>
+                    <span>Lanches</span>
+                    <span>R$ 31,90</span>
+                    <span class="status-badge success">Disponível</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>Batata rústica</span>
+                    <span>Acompanhamentos</span>
+                    <span>R$ 18,00</span>
+                    <span class="status-badge success">Disponível</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>Milk-shake de morango</span>
+                    <span>Bebidas</span>
+                    <span>R$ 21,50</span>
+                    <span class="status-badge success">Disponível</span>
+                </div>
+                <div class="gestao-tabela-linha">
+                    <span>Torta cookie</span>
+                    <span>Sobremesas</span>
+                    <span>R$ 17,90</span>
+                    <span class="status-badge neutral">Padrão</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../plataforma/index.js"></script>
+</body>
+</html>

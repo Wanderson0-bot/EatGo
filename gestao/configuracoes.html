@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../plataforma/style.css">
+    <title>Configurações</title>
+</head>
+<body class="gestao-page">
+    <!-- Menu lateral fixo da gestão -->
+    <header class="header-gestao">
+        <div class="area-logo-gestao">
+            <img src="../plataforma/src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text-gestao">
+                <h1>EatGo</h1>
+                <p class="brand-tag-gestao">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Dashboard">Dashboard</a></li>
+                <li><a href="pedidos.html" aria-label="Estabelecimentos">Gestão de Pedidos</a></li>
+                <li><a href="vendas.html" aria-label="Vendas">Gestão de Vendas</a></li>
+                <li><a href="entregas.html" aria-label="Entregas">Gestão de Entregas</a></li>
+                <li><a href="cardapio.html" aria-label="Cardápio">Cardápio</a></li>
+                <li><a class="ativo" href="configuracoes.html" aria-label="Configurações">Configurações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Preferências operacionais do estabelecimento -->
+    <main class="gestao-main">
+        <section class="gestao-page-header">
+            <div>
+                <p class="section-tag">Configurações</p>
+                <h2>Ajuste dados e parâmetros do estabelecimento</h2>
+                <p class="gestao-page-texto">
+                    Mantenha as informações principais atualizadas e gerencie as opções de operação.
+                </p>
+            </div>
+            <div class="gestao-page-acoes">
+                <a class="btn-secundario" href="index.html">Resumo geral</a>
+                <button class="btn-primario" type="button" id="gestao-config-salvar-topo">Salvar alterações</button>
+            </div>
+        </section>
+
+        <section class="gestao-grid gestao-grid-wide">
+            <article class="gestao-painel gestao-painel-full">
+                <div class="gestao-topo-card">
+                    <div>
+                        <p class="section-tag">Dados principais</p>
+                        <h3>Informações da loja</h3>
+                    </div>
+                </div>
+
+                <form class="gestao-form-stack" id="gestao-config-form">
+                    <div class="gestao-form-bloco">
+                        <div class="gestao-form-bloco-topo">
+                            <h4>Perfil da loja</h4>
+                            <p>Informações públicas exibidas para os clientes.</p>
+                        </div>
+
+                        <div class="gestao-form-grid">
+                            <label class="gestao-campo">
+                                <span>Nome do estabelecimento</span>
+                                <input type="text" name="nome">
+                            </label>
+                            <label class="gestao-campo">
+                                <span>CNPJ</span>
+                                <input type="text" name="cnpj">
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Telefone</span>
+                                <input type="text" name="telefone">
+                            </label>
+                            <label class="gestao-campo gestao-campo-full">
+                                <span>Endereço</span>
+                                <input type="text" name="endereco">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="gestao-form-bloco">
+                        <div class="gestao-form-grid">
+                            <label class="gestao-campo gestao-campo-full">
+                                <span>Access token do Mercado Pago</span>
+                                <input type="password" name="mercado_pago_access_token" placeholder="APP_USR-...">
+                                <small id="gestao-mp-status">Conecte a conta que deve receber os valores deste estabelecimento.</small>
+                            </label>
+
+                            <div class="checkout-opcoes gestao-campo-full">
+                                <p class="checkout-opcoes-titulo">Possui forma de entrega?</p>
+                                <div class="checkout-opcoes-linha">
+                                    <label class="opcao-entrega ativa">
+                                        <input type="radio" name="tipo-entrega" value="sim" checked>
+                                        <div class="opcao-entrega-conteudo">
+                                            <strong>Sim</strong>
+                                        </div>
+                                    </label>
+                                    <label class="opcao-entrega">
+                                        <input type="radio" name="tipo-entrega" value="nao">
+                                        <div class="opcao-entrega-conteudo">
+                                            <strong>Não</strong>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <label class="gestao-campo gestao-campo-full" id="campo-taxa-entrega">
+                                <span>Qual é a taxa de entrega?</span>
+                                <input type="text" name="taxa_entrega" placeholder="Ex.: R$ 8,90" inputmode="decimal">
+                            </label>
+
+                            <label class="gestao-campo">
+                                <span>Horário de abertura</span>
+                                <input type="text" name="horario_abertura">
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Horário de fechamento</span>
+                                <input type="text" name="horario_fechamento">
+                            </label>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="gestao-painel-acoes">
+                    <button class="btn-primario" type="button" id="gestao-config-salvar">Atualizar dados</button>
+                </div>
+
+            </article>
+        </section>
+    </main>
+    <script src="../plataforma/index.js"></script>
+</body>
+</html>

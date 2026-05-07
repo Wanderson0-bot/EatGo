@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>EatGo</title>
+</head>
+<body class="home-page">
+    <!-- Header principal do marketplace -->
+    <header>
+        <div class="area-logo">
+            <img src="src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text">
+                <h1>EatGo</h1>
+                <p class="brand-tag">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li class="header-login-item">
+                    <a class="header-login-link" href="login.html">Área do parceiro</a>
+                </li>
+                <li class="search-item">
+                    <form action="restaurantes.html" method="get" class="search-form">
+                        <input class="search" type="text" name="search" placeholder="Busque por estabelecimento ou prato" required>
+                        <button class="btn-buscar" type="submit" aria-label="Buscar">
+                            <img src="https://img.icons8.com/?size=100&id=12773&format=png&color=000000" alt="">
+                        </button>
+                    </form>
+                </li>
+                <li><a href="carrinho.html" aria-label="Carrinho"><img src="https://img.icons8.com/?size=100&id=13014&format=png&color=000000" alt="Carrinho"></a></li>
+                <li><a href="perfil.html" aria-label="Perfil"><img src="https://img.icons8.com/?size=100&id=114064&format=png&color=000000" alt="Perfil"></a></li>
+                <li><a href="acessibilidade.html" aria-label="Acessibilidade"><img src="https://img.icons8.com/?size=100&id=OCXqgxuKRsRU&format=png&color=000000" alt="Acessibilidade"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Carrossel de destaque da página inicial -->
+    <section class="carrossel" aria-label="Promoções em destaque">
+        <div class="carrossel-track">
+            <div class="carrossel-item">
+                <img src="src/caseiras.png" alt="Promoção em destaque da EatGo" >
+            </div>
+            <div class="carrossel-item">
+                <img src="src/massas.png" alt="Ofertas especiais de delivery">
+            </div>
+            <div class="carrossel-item" aria-hidden="true">
+                <img src="src/gelados.png" alt="">
+            </div>
+            <div class="carrossel-item">
+                <img src="src/churrasco.png" alt="">
+            </div>
+        </div>
+        <div class="carrossel-indicadores" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </section>
+
+    <section class="destaques" aria-label="Destaques do dia">
+        <div class="section-heading">
+            <p class="section-tag">Destaques do dia</p>
+            <h2>Promoções imperdíveis para hoje</h2>
+        </div>
+
+        <div class="cards" id="listaPromocoes"></div>
+    </section>
+
+    <!-- Navegação por categorias da home -->
+    <section class="opcoes" aria-label="Categorias">
+        <button class="opcao ativa" type="button" data-categoria="restaurantes">
+            <img src="https://img.icons8.com/?size=100&id=hDZAPBoj5SPu&format=png&color=000000" alt="Icone de fast food">
+            <span>Estabelecimentos</span>
+        </button>
+        <button class="opcao" type="button" data-categoria="comidas">
+            <img src="https://img.icons8.com/?size=100&id=h2gLcpy8N6LQ&format=png&color=000000" alt="Icone de comidas">
+            <span>Comidas</span>
+        </button>
+        <button class="opcao" type="button" data-categoria="bebidas">
+            <img src="https://img.icons8.com/?size=100&id=12863&format=png&color=000000" alt="Icone de bebidas">
+            <span>Bebidas</span>
+        </button>
+    </section>
+
+    <!-- Lista principal de estabelecimentos -->
+    <section class="estabelecimentos" aria-label="Estabelecimentos">
+      <div class="section-heading">
+        <p class="section-tag" id="section-tag">Mais pedidos</p>
+        <h2 id="section-title">Estabelecimentos em destaque</h2>
+      </div>
+
+      <div class="cards" id="cards-container">
+          <article class="card" data-categoria="restaurantes">
+            <img src="src/caseiras.png" alt="Restaurante Sabor da Casa">
+            <div id="listaEstabelecimentos" class="card-conteudo"></div>
+          </article>
+      </div>
+    </section>
+
+    <section class="cards-benefios" aria-label="Beneficios da nossa plataforma">
+        <div class="cards-benefios-topo">
+          <p class="section-tag">Vantagens EatGo</p>
+          <h2>Benefícios para fazer seu estabelecimento crescer</h2>
+          <p class="cards-benefios-texto">Uma plataforma pensada para dar mais alcance, organização e velocidade à operação do seu negócio.</p>
+        </div>
+        <div class="card-benefio">
+          <img src="https://img.icons8.com/?size=100&id=tycycXmAZfY7&format=png&color=000000" alt="Icone de busca">
+          <span class="card-benefio-tag">Alcance</span>
+          <h3>Mais vendas sem esforço</h3>
+          <p>Seja encontrado por novos clientes da sua região e aumente o volume de pedidos sem depender só de indicações.</p>
+        </div>
+        <div class="card-benefio">
+          <img src="https://img.icons8.com/?size=100&id=9xygBPzKrg89&format=png&color=000000" alt="Icone de vendas">
+          <span class="card-benefio-tag">Marca</span>
+          <h3>Presença digital profissional</h3>
+          <p>Tenha um cardápio online moderno, organizado e fácil de usar, sem precisar criar um site próprio.</p>
+        </div>
+        <div class="card-benefio">
+          <img src="https://img.icons8.com/?size=100&id=UZ2mwRmpVWEJ&format=png&color=000000" alt="Icone de suporte">
+          <span class="card-benefio-tag">Pedidos</span>
+          <h3>Centralização de pedidos</h3>
+          <p>Receba todos os pedidos em um só lugar, evitando erros, mensagens perdidas e confusão no atendimento.</p>
+        </div>
+        <div class="card-benefio">
+          <img src="https://img.icons8.com/?size=100&id=102707&format=png&color=000000" alt="Icone de acessibilidade">
+          <span class="card-benefio-tag">Operação</span>
+          <h3>Facilidade na gestão</h3>
+          <p>Gerencie produtos, preços e disponibilidade de forma simples e rápida, direto da plataforma.</p>
+        </div>
+        <div class="card-benefio">
+          <img src="https://img.icons8.com/?size=100&id=13800&format=png&color=000000" alt="Icone de cadastro">
+          <span class="card-benefio-tag">Descoberta</span>
+          <h3>Aumento da visibilidade</h3>
+          <p>Seu estabelecimento aparece junto com outros da região, aumentando as chances de ser descoberto por novos clientes.</p>
+        </div>
+        <div class="card-benefio">
+          <img src="https://img.icons8.com/?size=100&id=79NDSi91w2xL&format=png&color=000000" alt="Icone de suporte">
+          <span class="card-benefio-tag">Produtividade</span>
+          <h3>Economia de tempo</h3>
+          <p>Menos tempo respondendo mensagens e mais tempo focado na produção e qualidade de atendimento.</p>
+        </div>
+        <div class="card-benefio">
+          <img src="https://img.icons8.com/?size=100&id=N4rNSjCzYJNI&format=png&color=000000" alt="Icone de vendas">
+          <span class="card-benefio-tag">Crescimento</span>
+          <h3>Escalabilidade do negócio</h3>
+          <p>Cresça sem precisar aumentar proporcionalmente o esforço operacional.</p>
+        </div>
+    </section>
+
+    <section class="parceiros-fundadores" aria-label="Parceiros Fundadores EatGo">
+        <div class="parceiros-fundadores-topo">
+          <p class="section-tag">Parceiros Fundadores</p>
+          <h2>Top 20 parceiros fundadores</h2>
+          <p class="parceiros-fundadores-texto">Conheça alguns dos empreendedores que acreditaram na EatGo desde o início.</p>
+        </div>
+
+        <div class="parceiros-fundadores-grid">
+          <div class="parceiro-fundador">
+            <img src="src/logo.png" alt="Foto ilustrativa do fundador da EatGo">
+            <h3>Matheus Costa</h3>
+            <p>Estratégia de expansão</p>
+          </div>
+
+          <div class="parceiro-fundador">
+            <img src="src/logo.png" alt="Foto ilustrativa da co-fundadora da EatGo">
+            <h3>Amanda Ribeiro</h3>
+            <p>Experiência do parceiro</p>
+          </div>
+
+          <div class="parceiro-fundador">
+            <img src="src/logo.png" alt="Foto ilustrativa do co-fundador da EatGo">
+            <h3>Gabriel Martins</h3>
+            <p>Operação e tecnologia</p>
+          </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>EatGo</h2>
+          <p>Seu delivery favorito para pedir bem, rápido e com praticidade todos os dias.</p>
+        </div>
+
+        <div class="footer-links">
+          <h3>Explorar</h3>
+          <ul>
+            <li><a href="#listaEstabelecimentos">Estabelecimentos</a></li>
+            <li><a href="#listaPromocoes">Promoções</a></li>
+            <li><a href="sobre-nos.html">Sobre Nós</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h3>Suporte</h3>
+          <ul>
+            <li><a href="central-ajuda.html">Central de ajuda</a></li>
+            <li><a href="https://wa.me/558581101269">Fale conosco</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-info">
+          <h3>Atendimento</h3>
+          <p>Plataforma: 24h</p>
+          <p><span>Atenção:</span> cada estabelecimento tem seu próprio horário de funcionamento</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>2026 EatGo. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

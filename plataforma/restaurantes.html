@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Estabelecimento | EatGo</title>
+</head>
+<body>
+    <!-- Header compartilhado da plataforma -->
+    <header>
+        <div class="area-logo">
+            <img src="src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text">
+                <h1>EatGo</h1>
+                <p class="brand-tag">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Home"><img src="https://img.icons8.com/?size=100&id=BE56i0LQZMIW&format=png&color=000000" alt="Home"></a></li>
+                <li><a href="carrinho.html" aria-label="Carrinho"><img src="https://img.icons8.com/?size=100&id=13014&format=png&color=000000" alt="Carrinho"></a></li>
+                <li><a href="perfil.html" aria-label="Perfil"><img src="https://img.icons8.com/?size=100&id=114064&format=png&color=000000" alt="Perfil"></a></li>
+                <li><a href="acessibilidade.html" aria-label="Acessibilidade"><img src="https://img.icons8.com/?size=100&id=OCXqgxuKRsRU&format=png&color=000000" alt="Acessibilidade"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Página pública do estabelecimento -->
+    <main class="restaurante-page">
+        <section class="restaurante-hero">
+            <img id="restaurante-capa" src="src/logo.png" alt="Capa do estabelecimento">
+            <div class="restaurante-hero-conteudo">
+                <p class="section-tag">Estabelecimento parceiro</p>
+                <h1 id="restaurante-nome">Estabelecimento parceiro</h1>
+                <p class="restaurante-descricao" id="restaurante-descricao">Os dados deste estabelecimento serão exibidos assim que estiverem disponíveis.</p>
+                <div class="restaurante-meta">
+                    <span id="restaurante-endereco">Endereço não disponível</span>
+                    <span id="restaurante-tempo">Tempo não disponível</span>
+                    <span id="restaurante-categoria">Categoria não disponível</span>
+                    <span id="restaurante-horario">Horário não disponível</span>
+                    <span id="restaurante-avaliacao">Avaliação não disponível</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="restaurante-cardapio">
+            <div class="section-heading restaurante-cardapio-topo">
+                <p class="section-tag">Cardápio</p>
+                <h2>Pratos e bebidas disponíveis</h2>
+            </div>
+            <div class="cards" id="restaurante-cardapio-lista"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>EatGo</h2>
+          <p>Seu delivery favorito para pedir bem, rápido e com praticidade todos os dias.</p>
+        </div>
+
+        <div class="footer-links">
+          <h3>Explorar</h3>
+          <ul>
+            <li><a href="index.html#listaEstabelecimentos">Estabelecimentos</a></li>
+            <li><a href="index.html#listaPromocoes">Promoções</a></li>
+            <li><a href="carrinho.html">Finalizar pedido</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h3>Suporte</h3>
+          <ul>
+            <li><a href="central-ajuda.html">Central de ajuda</a></li>
+            <li><a href="https://wa.me/558581101269">Fale conosco</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-info">
+          <h3>Atendimento</h3>
+          <p>Plataforma: 24h</p>
+          <span>Confira o horário do estabelecimento antes de pedir</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>2026 EatGo. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

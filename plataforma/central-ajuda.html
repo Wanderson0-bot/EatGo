@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Central de Ajuda | EatGo</title>
+</head>
+
+<body class="central-ajuda-page" data-central-ajuda>
+    <header>
+        <div class="area-logo">
+            <img src="src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text">
+                <h1>EatGo</h1>
+                <p class="brand-tag">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Home"><img
+                            src="https://img.icons8.com/?size=100&id=BE56i0LQZMIW&format=png&color=000000"
+                            alt="Home"></a></li>
+                <li><a href="perfil.html" aria-label="Perfil"><img
+                            src="https://img.icons8.com/?size=100&id=114064&format=png&color=000000" alt="Perfil"></a>
+                </li>
+                <li><a href="acessibilidade.html" aria-label="Acessibilidade"><img
+                            src="https://img.icons8.com/?size=100&id=OCXqgxuKRsRU&format=png&color=000000"
+                            alt="Acessibilidade"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="central-ajuda-main">
+        <section class="central-ajuda-hero">
+            <div class="central-ajuda-hero-conteudo">
+                <p class="section-tag">Suporte EatGo</p>
+                <h1>Resolva duvidas, acompanhe orientacoes e fale com a equipe</h1>
+                <p class="central-ajuda-subtitulo">Busque respostas para clientes e parceiros, filtre por assunto e envie sua mensagem em poucos passos.</p>
+                <div class="central-ajuda-hero-acoes">
+                    <a href="https://wa.me/558581101269" class="btn-contato" target="_blank" rel="noreferrer">Falar no WhatsApp</a>
+                    <a href="#central-ajuda-form" class="btn-contato secundario">Enviar mensagem</a>
+                </div>
+            </div>
+
+            <aside class="central-ajuda-hero-card">
+                <span>Atendimento</span>
+                <strong>24h na plataforma</strong>
+                <p>Nosso suporte ajuda com cadastro, pedidos, pagamento, conta e operacao dos estabelecimentos.</p>
+                <ul>
+                    <li>Clientes e parceiros em um so lugar</li>
+                    <li>Respostas rapidas por categoria</li>
+                    <li>Contato direto pelo WhatsApp</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="central-ajuda-busca">
+            <div>
+                <p class="section-tag">Busca inteligente</p>
+                <h2>Encontre a resposta certa mais rapido</h2>
+            </div>
+            <label class="central-ajuda-searchbox" for="ajuda-search">
+                <span>Pesquisar na central</span>
+                <input type="search" id="ajuda-search" placeholder="Ex.: reembolso, cadastro, entrega, pagamento">
+            </label>
+            <div class="central-ajuda-filtros">
+                <button type="button" class="ajuda-filtro ativa" data-ajuda-categoria="todas" aria-pressed="true">Todas</button>
+                <button type="button" class="ajuda-filtro" data-ajuda-categoria="cliente" aria-pressed="false">Clientes</button>
+                <button type="button" class="ajuda-filtro" data-ajuda-categoria="financeiro" aria-pressed="false">Financeiro</button>
+                <button type="button" class="ajuda-filtro" data-ajuda-categoria="parceiro" aria-pressed="false">Parceiros</button>
+                <button type="button" class="ajuda-filtro" data-ajuda-categoria="plataforma" aria-pressed="false">Plataforma</button>
+            </div>
+            <p class="central-ajuda-resultados" id="ajuda-result-count">0 respostas encontradas</p>
+        </section>
+
+        <section class="central-ajuda-faq">
+            <div class="central-ajuda-topo-secao">
+                <p class="section-tag">Perguntas frequentes</p>
+                <h2>Respostas organizadas por assunto</h2>
+            </div>
+
+            <div class="faq-lista">
+                <article class="faq-item is-open" data-category="cliente">
+                    <button class="faq-question" type="button" aria-expanded="true">
+                        <span>Como faco para criar uma conta?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Acesse o perfil no canto superior direito, preencha seu cadastro e seus dados ficam salvos no navegador para acelerar os proximos pedidos.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item" data-category="cliente">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Posso cancelar meu pedido?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim. O cancelamento depende do status do pedido. Se ele ainda nao entrou em preparo, fale com o suporte para validar a reversao.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item" data-category="financeiro">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Quais formas de pagamento sao aceitas?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A plataforma pode operar com cartao, Pix, dinheiro ou pagamento direto na entrega, conforme a configuracao do estabelecimento e do checkout.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item" data-category="financeiro">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Como solicito um reembolso?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Envie o numero do pedido, o motivo e seus dados de contato pelo WhatsApp. A equipe analisa o caso e retorna com a tratativa correta.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item" data-category="parceiro">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Como faco para cadastrar meu estabelecimento?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O cadastro de estabelecimentos e feito apenas pela administracao da EatGo. Envie sua solicitacao pelo suporte para que a equipe valide os dados e libere seu acesso de gestao.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item" data-category="parceiro">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Quais sao as taxas para os estabelecimentos?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A EatGo, em vez de trabalhar com planos mensais, opera com taxa fixa por venda. Voce paga apenas quando vender.
+                            Para mais informacoes, entre em contato conosco e entenda melhor como podemos ajudar seu estabelecimento a crescer.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="faq-item" data-category="plataforma">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Como funciona a EatGo para clientes?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Voce escolhe um estabelecimento, navega no cardapio, adiciona itens ao carrinho, confirma entrega ou retirada e finaliza o pedido.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item" data-category="plataforma">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Como funciona a EatGo para parceiros?</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Depois que a equipe cadastra o estabelecimento e libera o acesso da gestao, o parceiro acompanha pedidos, visualiza o cardapio, ajusta configuracoes e organiza a operacao do estabelecimento.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="central-ajuda-canais">
+            <article class="canal-card">
+                <p class="section-tag">Canal rapido</p>
+                <h3>WhatsApp</h3>
+                <p>Ideal para duvidas urgentes, acompanhamento de pedido e suporte comercial.</p>
+                <a href="https://wa.me/558581101269" target="_blank" rel="noreferrer">Abrir conversa</a>
+            </article>
+
+            <article class="canal-card">
+                <p class="section-tag">Orientacao</p>
+                <h3>Clientes</h3>
+                <p>Ajuda com conta, perfil, endereco, pedido, entrega e experiencia no marketplace.</p>
+                <a href="#ajuda-search">Buscar respostas</a>
+            </article>
+
+            <article class="canal-card">
+                <p class="section-tag">Operacao</p>
+                <h3>Parceiros</h3>
+                <p>Ajuda com solicitacao de parceria, area de gestao, cardapio, visibilidade e fluxo de atendimento.</p>
+                <a href="#central-ajuda-form">Solicitar parceria</a>
+            </article>
+        </section>
+
+        <section class="central-ajuda-contato">
+            <div class="central-ajuda-topo-secao">
+                <p class="section-tag">Fale com a equipe</p>
+                <h2>Envie uma mensagem personalizada</h2>
+                <p>Ao enviar, abrimos seu aplicativo de email com a mensagem pronta para contato com a equipe da EatGo.</p>
+            </div>
+
+            <form id="central-ajuda-form" class="contato-form">
+                <label>
+                    <span>Seu nome</span>
+                    <input type="text" name="nome" placeholder="Digite seu nome" required>
+                </label>
+
+                <label>
+                    <span>Seu email</span>
+                    <input type="email" name="email" placeholder="voce@email.com" required>
+                </label>
+
+                <label>
+                    <span>Assunto</span>
+                    <input type="text" name="assunto" placeholder="Ex.: Problema com pedido" required>
+                </label>
+
+                <label class="contato-form-mensagem">
+                    <span>Mensagem</span>
+                    <textarea name="mensagem" rows="6" placeholder="Descreva sua duvida ou problema" required></textarea>
+                </label>
+
+                <button type="submit" class="btn-enviar">Enviar mensagem</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2>EatGo</h2>
+                <p>Seu delivery favorito para pedir bem, rapido e com praticidade todos os dias.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Suporte</h3>
+                <ul>
+                    <li><a href="central-ajuda.html">Central de ajuda</a></li>
+                    <li><a href="https://wa.me/558581101269">Fale conosco</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-info">
+                <h3>Atendimento</h3>
+                <p>Plataforma: 24h</p>
+                <p><span>Atenção:</span> cada estabelecimento tem seu proprio horario de funcionamento</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>2026 EatGo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

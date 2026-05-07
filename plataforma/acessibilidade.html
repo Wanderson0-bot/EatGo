@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Acessibilidade | EatGo</title>
+</head>
+<body>
+    <header>
+        <div class="area-logo">
+            <img src="src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text">
+                <h1>EatGo</h1>
+                <p class="brand-tag">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Home"><img src="https://img.icons8.com/?size=100&id=BE56i0LQZMIW&format=png&color=000000" alt="Home"></a></li>
+                <li><a href="carrinho.html" aria-label="Carrinho"><img src="https://img.icons8.com/?size=100&id=13014&format=png&color=000000" alt="Carrinho"></a></li>
+                <li><a href="perfil.html" aria-label="Perfil"><img src="https://img.icons8.com/?size=100&id=114064&format=png&color=000000" alt="Perfil"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="acessibilidade-page">
+        <section class="acessibilidade-hero">
+            <p class="section-tag">Experiencia inclusiva</p>
+            <h1>Acessibilidade na EatGo</h1>
+            <p class="acessibilidade-subtitulo">Recursos pensados para tornar a navegação mais clara, confortável e acessível para diferentes perfis de usuário.</p>
+        </section>
+
+        <div class="acessibilidade-layout">
+            <section class="acessibilidade-card">
+                <div class="acessibilidade-card-topo">
+                    <h2>Recursos disponíveis</h2>
+                    <span>Configurações rápidas</span>
+                </div>
+
+                <div class="acessibilidade-opcoes">
+                    <label class="acessibilidade-opcao">
+                        <div>
+                            <strong>Alto contraste</strong>
+                            <p>Melhora a leitura com maior diferenca entre fundo e texto.</p>
+                        </div>
+                        <input type="checkbox" data-accessibility="contraste" checked>
+                    </label>
+
+                    <label class="acessibilidade-opcao">
+                        <div>
+                            <strong>Fonte ampliada</strong>
+                            <p>Aumenta o tamanho dos textos principais para facilitar a leitura.</p>
+                        </div>
+                        <input type="checkbox" data-accessibility="fonte-ampliada">
+                    </label>
+
+                    <label class="acessibilidade-opcao">
+                        <div>
+                            <strong>Navegação por teclado</strong>
+                            <p>Destaca elementos focáveis para quem usa tabulação.</p>
+                        </div>
+                        <input type="checkbox" data-accessibility="teclado" checked>
+                    </label>
+
+                    <label class="acessibilidade-opcao">
+                        <div>
+                            <strong>Reducao de movimento</strong>
+                            <p>Diminui animacoes e transicoes para uma experiencia mais suave.</p>
+                        </div>
+                        <input type="checkbox" data-accessibility="movimento-reduzido">
+                    </label>
+                </div>
+            </section>
+
+            <aside class="acessibilidade-card acessibilidade-ajuda">
+                <h2>Atalhos e suporte</h2>
+                <div class="acessibilidade-lista">
+                    <div>
+                        <span>Tab</span>
+                        <p>Navega pelos elementos interativos da pagina.</p>
+                    </div>
+                    <div>
+                        <span>Shift + Tab</span>
+                        <p>Retorna para o elemento anterior.</p>
+                    </div>
+                    <div>
+                        <span>Enter</span>
+                        <p>Ativa botoes, links e acoes selecionadas.</p>
+                    </div>
+                </div>
+
+                <div class="acessibilidade-contato">
+                    <p>Precisa de suporte?</p>
+                    <strong>acessibilidade@eatgo.com</strong>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>EatGo</h2>
+          <p>Seu delivery favorito para pedir bem, rápido e com praticidade todos os dias.</p>
+        </div>
+
+        <div class="footer-links">
+          <h3>Explorar</h3>
+          <ul>
+            <li><a href="index.html#listaEstabelecimentos">Estabelecimentos</a></li>
+            <li><a href="index.html#listaPromocoes">Promoções</a></li>
+            <li><a href="central-ajuda.html#central-ajuda-form">Solicite uma parceria</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h3>Suporte</h3>
+          <ul>
+            <li><a href="central-ajuda.html">Central de ajuda</a></li>
+            <li><a href="https://wa.me/558581101269">Fale conosco</a></li>
+            <li><a href="mailto:acessibilidade@eatgo.com">Canal de acessibilidade</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-info">
+          <h3>Atendimento</h3>
+          <p>Plataforma: 24h</p>
+          <span>Suporte prioritário para acessibilidade</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>2026 EatGo. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

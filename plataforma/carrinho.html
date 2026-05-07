@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Seu Carrinho | EatGo</title>
+</head>
+<body>
+    <!-- Header compartilhado da plataforma -->
+    <header>
+        <div class="area-logo">
+            <img src="src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text">
+                <h1>EatGo</h1>
+                <p class="brand-tag">MARKETPLACE</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="Home"><img src="https://img.icons8.com/?size=100&id=BE56i0LQZMIW&format=png&color=000000" alt="Home"></a></li>
+                <li><a href="perfil.html" aria-label="Perfil"><img src="https://img.icons8.com/?size=100&id=114064&format=png&color=000000" alt="Perfil"></a></li>
+                <li><a href="acessibilidade.html" aria-label="Acessibilidade"><img src="https://img.icons8.com/?size=100&id=OCXqgxuKRsRU&format=png&color=000000" alt="Acessibilidade"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Página de checkout e revisão do pedido -->
+    <main class="carrinho-page">
+        <section class="carrinho-hero">
+            <p class="section-tag">Checkout EatGo</p>
+            <h1>Seu carrinho, pronto para finalizar</h1>
+            <p class="carrinho-subtitulo">Revise seus itens, confira a entrega e avance para um pedido rápido e seguro.</p>
+        </section>
+
+        <div class="carrinho-layout">
+            <section class="carrinho-section">
+                <div class="carrinho-header">
+                    <h2>Itens selecionados</h2>
+                    <span id="carrinho-contagem">0 itens</span>
+                </div>
+
+                <div class="carrinho-lista" id="carrinho-lista"></div>
+            </section>
+
+            <aside class="checkout-section">
+                <h2>Resumo do pedido</h2>
+                <p>Confirme os valores antes de finalizar a compra.</p>
+
+                <div class="checkout-opcoes">
+                    <p class="checkout-opcoes-titulo">Como voce quer receber?</p>
+                    <div class="checkout-opcoes-linha">
+                        <label class="opcao-entrega ativa">
+                            <input type="radio" name="tipo-recebimento" value="entrega" checked>
+                            <div class="opcao-entrega-conteudo">
+                                <small class="opcao-entrega-tag">Mais rápido</small>
+                                <strong>Entrega</strong>
+                                <span>Receba no endereço cadastrado</span>
+                            </div>
+                            <em>+ R$ 8,90</em>
+                        </label>
+                        <label class="opcao-entrega">
+                            <input type="radio" name="tipo-recebimento" value="retirada">
+                            <div class="opcao-entrega-conteudo">
+                                <small class="opcao-entrega-tag">Economize</small>
+                                <strong>Retirada no estabelecimento</strong>
+                                <span>Busque seu pedido no local e economize na entrega</span>
+                            </div>
+                            <em>Grátis</em>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkout-itens" id="checkout-itens">
+                    <p class="checkout-itens-titulo">Itens do pedido</p>
+                </div>
+
+                <div class="checkout-resumo" id="checkout-resumo">
+                    <div>
+                        <span>Subtotal</span>
+                        <strong id="checkout-subtotal">R$ 0,00</strong>
+                    </div>
+                    <div>
+                        <span>Entrega</span>
+                        <strong id="checkout-entrega">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <div class="checkout-pagamento">
+                    <p class="checkout-opcoes-titulo">Pagamento com Mercado Pago</p>
+                    <p>O checkout da EatGo só cria a cobrança. O pagamento é concluído na página segura do Mercado Pago vinculada ao estabelecimento.</p>
+
+                    <div class="checkout-card-fields" id="checkout-card-fields">
+                        <p>Ao finalizar, você será redirecionado para o Mercado Pago para concluir o pagamento com os métodos disponíveis na conta do estabelecimento.</p>
+                    </div>
+                </div>
+
+                <div class="checkout-total">
+                    <span>Total</span>
+                    <strong id="checkout-total">R$ 0,00</strong>
+                </div>
+
+                <div class="checkout-acoes">
+                    <button class="checkout-button">Finalizar compra</button>
+                    <button class="limpar-button">Limpar carrinho</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>EatGo</h2>
+          <p>Seu delivery favorito para pedir bem, rápido e com praticidade todos os dias.</p>
+        </div>
+
+        <div class="footer-links">
+          <h3>Suporte</h3>
+          <ul>
+            <li><a href="central-ajuda.html">Central de ajuda</a></li>
+            <li><a href="https://wa.me/558581101269">Fale conosco</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-info">
+          <h3>Atendimento</h3>
+          <p>Plataforma: 24h</p>
+          <p><span>Atenção:</span> cada estabelecimento tem seu próprio horário de funcionamento</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>2026 EatGo. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

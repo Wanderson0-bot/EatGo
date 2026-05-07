@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Login de Gestão | EatGo</title>
+</head>
+<body class="login-page">
+    <!-- Tela de acesso à área de gestão -->
+    <main class="login-main">
+        <section class="login-card">
+            <a class="login-voltar" href="index.html">Voltar para a plataforma</a>
+
+            <div class="login-brand">
+                <img src="src/logo.png" alt="Logo da EatGo">
+                <div>
+                    <p class="section-tag">Acesso restrito</p>
+                    <h1>Entrar na área de gestão</h1>
+                    <p class="login-texto">Use o email e a senha liberados no cadastro administrativo para acompanhar pedidos, cardápio, configurações e operação do seu estabelecimento.</p>
+                </div>
+            </div>
+
+            <form class="login-form" id="partner-login-form">
+                <label class="login-campo">
+                    <span>E-mail</span>
+                    <input type="email" name="email" placeholder="gestao@eatgo.com" required>
+                </label>
+
+                <label class="login-campo">
+                    <span>Senha</span>
+                    <input type="password" name="senha" placeholder="Digite sua senha" required>
+                </label>
+
+                <button class="btn-primario login-botao" type="submit">Entrar na gestão</button>
+            </form>
+
+            <div class="login-extra">
+                <button class="login-link-button" type="button" id="toggle-recovery-form" aria-expanded="false" aria-controls="partner-recovery-form">
+                    Esqueci minha senha
+                </button>
+
+                <form class="login-form login-recovery-form" id="partner-recovery-form" hidden>
+                    <p class="login-recovery-texto">Recupere o acesso com o email da gestão, o CNPJ do estabelecimento e uma nova senha.</p>
+
+                    <label class="login-campo">
+                        <span>E-mail da gestão</span>
+                        <input type="email" name="email_recuperacao" placeholder="gestao@eatgo.com" required>
+                    </label>
+
+                    <label class="login-campo">
+                        <span>CNPJ do estabelecimento</span>
+                        <input type="text" name="cnpj" placeholder="00.000.000/0000-00" required>
+                    </label>
+
+                    <label class="login-campo">
+                        <span>Nova senha</span>
+                        <input type="password" name="nova_senha" placeholder="Minimo de 8 caracteres" minlength="8" required>
+                    </label>
+
+                    <button class="btn-secundario login-botao-secundario" type="submit">Atualizar senha</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>

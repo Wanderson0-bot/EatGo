@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../plataforma/style.css">
+    <title>Admin da Plataforma | EatGo</title>
+</head>
+
+<body class="gestao-page admin-page admin-locked">
+    <header class="header-gestao">
+        <div class="area-logo-gestao">
+            <img src="../plataforma/src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text-gestao">
+                <h1>EatGo</h1>
+                <p class="brand-tag-gestao">ADMIN</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a class="ativo" href="#visao-geral">Visão geral</a></li>
+                <li><a href="#cadastrar-estabelecimento">Cadastrar estabelecimento</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="gestao-main admin-main">
+        <section class="gestao-page-header" id="visao-geral">
+            <div>
+                <p class="section-tag">Acesso restrito</p>
+                <h2>Painel administrativo da plataforma</h2>
+                <p class="gestao-page-texto">
+                    Esta área não está vinculada ao fluxo público e concentra uma visão geral da operação da EatGo.
+                </p>
+            </div>
+            <div class="gestao-page-acoes">
+                <button class="btn-secundario" type="button" id="admin-refresh">Atualizar dados</button>
+                <button class="btn-primario" type="button" id="admin-logout">Sair</button>
+            </div>
+        </section>
+
+        <section class="admin-login-shell" id="admin-login-shell">
+            <article class="admin-login-card">
+                <p class="section-tag">Ambiente restrito</p>
+                <h3>Entrar no painel administrativo</h3>
+                <p id="admin-login-feedback">Informe a senha administrativa para liberar esta área.</p>
+                <form class="gestao-form-stack" id="admin-login-form">
+                    <label class="gestao-campo">
+                        <span>Senha administrativa</span>
+                        <div style="position: relative;">
+                            <input type="password" id="admin-password" name="senha" placeholder="Digite a senha" autocomplete="current-password">
+                            <button type="button" id="admin-toggle-password" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #666; cursor: pointer; font-size: 1.2em;">👁️</button>
+                        </div>
+                    </label>
+                    <div class="gestao-painel-acoes">
+                        <button class="btn-primario" type="submit">Entrar</button>
+                    </div>
+                </form>
+            </article>
+        </section>
+
+        <section class="admin-dashboard admin-hidden" id="admin-dashboard">
+            <section class="gestao-metricas" aria-label="Indicadores gerais da plataforma">
+                <article class="gestao-card-metrica">
+                    <span class="gestao-card-label">Estabelecimentos ativos</span>
+                    <strong id="admin-estabelecimentos-ativos">0</strong>
+                    <p id="admin-estabelecimentos-resumo">Sem dados carregados</p>
+                </article>
+
+                <article class="gestao-card-metrica">
+                    <span class="gestao-card-label">Clientes ativos</span>
+                    <strong id="admin-clientes-total">0</strong>
+                    <p>Base geral de consumidores cadastrados</p>
+                </article>
+
+                <article class="gestao-card-metrica">
+                    <span class="gestao-card-label">Faturamento aprovado</span>
+                    <strong id="admin-faturamento-aprovado">R$ 0,00</strong>
+                    <p id="admin-pagamentos-aprovados">0 pagamentos aprovados</p>
+                </article>
+            </section>
+
+            <section class="gestao-grid">
+                <article class="gestao-painel" id="remocao-estabelecimento">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Monitoramento</p>
+                            <h3>Pedidos recentes da plataforma</h3>
+                        </div>
+                    </div>
+
+                    <div class="gestao-tabela" id="admin-orders-table">
+                        <div class="gestao-tabela-linha gestao-tabela-head">
+                            <span>Pedido</span>
+                            <span>Cliente</span>
+                            <span>Estabelecimento</span>
+                            <span>Status</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="gestao-painel" id="estabelecimentos">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Operação</p>
+                            <h3>Estabelecimentos com maior movimento</h3>
+                        </div>
+                    </div>
+
+                    <div class="gestao-tabela" id="admin-establishments-table">
+                        <div class="gestao-tabela-linha gestao-tabela-head">
+                            <span>Loja</span>
+                            <span>Categoria</span>
+                            <span>Pedidos</span>
+                            <span>Faturamento</span>
+                            <span>Ações</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="gestao-grid gestao-grid-wide">
+                <article class="gestao-painel" id="melhores-clientes">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Clientes</p>
+                            <h3>Melhores clientes da plataforma</h3>
+                        </div>
+                    </div>
+
+                    <div class="gestao-tabela" id="admin-top-clients-table">
+                        <div class="gestao-tabela-linha gestao-tabela-head">
+                            <span>Cliente</span>
+                            <span>Email</span>
+                            <span>Telefone</span>
+                            <span>Pedidos</span>
+                            <span>Total Gasto</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="gestao-grid">
+                <article class="gestao-painel" id="pedidos">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Atenção</p>
+                            <h3>Remoção de Estabelecimento</h3>
+                        </div>
+                    </div>
+
+                    <form class="gestao-form-stack" id="admin-remove">
+                        <div class="gestao-form-bloco">
+                            <div class="gestao-form-bloco-topo">
+                                <h4>Remover Estabelecimento</h4>
+                                <p>Insira o ID do estabelecimento para removê-lo permanentemente do sistema.</p>
+                            </div>
+                            <label class="gestao-campo">
+                                <span>ID do Estabelecimento</span>
+                                <input type="number" id="remove-establishment-id"
+                                    placeholder="Digite o ID do estabelecimento" required>
+                            </label>
+                            <div style="margin-top: 18px;">
+                                <button type="button" id="remove-establishment-btn" class="btn-secundario">Remover
+                                    Estabelecimento</button>
+                            </div>
+                        </div>
+                    </form>
+                </article>
+            </section>
+
+            <section class="gestao-painel-cadastro admin-hidden" id="cadastrar-estabelecimento">
+                <div class="gestao-topo-card">
+                    <div>
+                        <p class="section-tag">Parceiros</p>
+                        <h2>Cadastrar novo estabelecimento</h2>
+                        <p class="gestao-page-texto">Adicione um novo parceiro à plataforma preenchendo os dados do estabelecimento abaixo.</p>
+                    </div>
+                </div>
+
+                <form class="gestao-form-stack" id="admin-cadastro-form">
+                    <div class="gestao-form-bloco">
+                        <div class="gestao-form-bloco-topo">
+                            <h4>Dados do estabelecimento</h4>
+                        </div>
+                        <div class="gestao-form-grid">
+                            <label class="gestao-campo">
+                                <span>Nome do estabelecimento</span>
+                                <input type="text" name="nome" placeholder="Ex.: Bistrô da Praça" required>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>CNPJ</span>
+                                <input type="text" name="cnpj" placeholder="00.000.000/0000-00" required>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Email comercial</span>
+                                <input type="email" name="email" placeholder="contato@estabelecimento.com" required>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Nome do responsável</span>
+                                <input type="text" name="responsavel_nome" placeholder="Ex.: Maria Oliveira" required>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Telefone</span>
+                                <input type="tel" name="telefone" placeholder="(11) 99999-0000" required>
+                            </label>
+                            <label class="gestao-campo gestao-campo-full">
+                                <span>Endereço</span>
+                                <input type="text" name="endereco" placeholder="Rua, número, bairro e cidade" required>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Categoria</span>
+                                <select name="categoria" required>
+                                    <option value="">Selecione</option>
+                                    <option>Comida brasileira</option>
+                                    <option>Hamburgueria</option>
+                                    <option>Pizzaria</option>
+                                    <option>Sushi</option>
+                                </select>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Horário de funcionamento</span>
+                                <input type="text" name="horario_funcionamento" placeholder="Ex.: 11h às 23h" required>
+                            </label>
+                            <label class="gestao-campo gestao-campo-full">
+                                <span>Access token do Mercado Pago</span>
+                                <input type="password" name="mercado_pago_access_token" placeholder="APP_USR-...">
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Senha de acesso da gestão</span>
+                                <input type="password" name="senha_acesso" placeholder="Minimo de 8 caracteres" minlength="8" required>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="gestao-form-bloco">
+                        <div class="gestao-form-bloco-topo">
+                            <h4>Detalhes operacionais</h4>
+                        </div>
+                        <div class="gestao-form-grid">
+                            <div class="gestao-campo gestao-campo-full">
+                                <span>Possui forma de entrega?</span>
+                                <div style="display: flex; gap: 12px; margin-top: 8px;">
+                                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                        <input type="radio" name="possui_entrega" value="1" checked>
+                                        <span>Sim</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                        <input type="radio" name="possui_entrega" value="0">
+                                        <span>Não</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <label class="gestao-campo gestao-campo-full" id="admin-taxa-entrega-campo">
+                                <span>Taxa de entrega</span>
+                                <input type="text" name="taxa_entrega" placeholder="Ex.: R$ 8,90">
+                            </label>
+                            <label class="gestao-campo gestao-campo-full">
+                                <span>Descrição</span>
+                                <textarea name="descricao" rows="4" placeholder="Conte um pouco sobre seu estabelecimento..."></textarea>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="gestao-painel-acoes">
+                        <button type="submit" class="btn-primario">Cadastrar estabelecimento</button>
+                    </div>
+                </form>
+            </section>
+    </main>
+
+    <script src="../plataforma/admin.js"></script>
+</body>
+
+</html>
