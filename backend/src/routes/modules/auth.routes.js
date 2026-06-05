@@ -1,12 +1,16 @@
 // Endpoints de autenticação da área de gestão.
 const { Router } = require("express");
-const rateLimit = require("express-rate-limit");
 const { query } = require("../../config/database");
 const asyncHandler = require("../../lib/async-handler");
 const AppError = require("../../lib/app-error");
 const validate = require("../../middlewares/validate");
 const { requireAuth } = require("../../middlewares/auth");
-const { partnerLoginSchema, partnerRecoverPasswordSchema } = require("../../schemas/auth.schema");
+const env = require("../../config/env");
+const {
+  partnerLoginSchema,
+  partnerRecoverPasswordSchema,
+  partnerResetPasswordSchema
+} = require("../../schemas/auth.schema");
 const { hashPassword, verifyPassword } = require("../../services/password.service");
 const { signAccessToken } = require("../../services/token.service");
 const {
@@ -17,23 +21,14 @@ const {
   SESSION_SCOPES,
   setSessionCookie
 } = require("../../services/session.service");
+const crypto = require("crypto");
+const { sendRecoveryEmail } = require("../../services/email.service");
+
 
 const router = Router();
 
-const loginRateLimit = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  limit: 10,
-  standardHeaders: true,
-  legacyHeaders: false
-});
-
-function normalizeDocument(value) {
-  return String(value || "").replace(/\D/g, "");
-}
-
 router.post(
   "/partner/login",
-  loginRateLimit,
   validate(partnerLoginSchema),
   asyncHandler(async (req, res) => {
     const { email, senha } = req.validated.body;
@@ -116,46 +111,86 @@ router.post(
 
 router.post(
   "/partner/recover-password",
-  loginRateLimit,
   validate(partnerRecoverPasswordSchema),
   asyncHandler(async (req, res) => {
-    const { email, cnpj, nova_senha } = req.validated.body;
+    const { email } = req.validated.body;
 
     const users = await query(
-      `SELECT
-        ue.id_usuario_estabelecimento,
-        ue.ativo,
-        e.cnpj,
-        e.ativo AS estabelecimento_ativo
-      FROM usuarios_estabelecimento ue
-      INNER JOIN estabelecimentos e
-        ON e.id_estabelecimento = ue.id_estabelecimento
-      WHERE ue.email = ?
-      LIMIT 1`,
+      `SELECT id_usuario_estabelecimento
+       FROM usuarios_estabelecimento
+       WHERE email = ?
+       LIMIT 1`,
       [email]
     );
 
     const user = users[0];
 
-    if (!user || !user.ativo || !user.estabelecimento_ativo) {
-      throw new AppError(404, "Nao foi encontrada uma conta ativa com esses dados.");
+    if (!user) {
+      throw new AppError(404, "Conta nao encontrada.");
     }
 
-    if (normalizeDocument(user.cnpj) !== normalizeDocument(cnpj)) {
-      throw new AppError(400, "Os dados informados nao conferem com o estabelecimento.");
-    }
+    const token = crypto.randomBytes(32).toString("hex");
 
-    const senhaHash = await hashPassword(nova_senha);
+    const expires = new Date(Date.now() + 1000 * 60 * 60);
 
     await query(
       `UPDATE usuarios_estabelecimento
-      SET senha_hash = ?, atualizado_em = CURRENT_TIMESTAMP
-      WHERE id_usuario_estabelecimento = ?`,
+       SET reset_token = ?,
+           reset_token_expira_em = ?
+       WHERE id_usuario_estabelecimento = ?`,
+      [token, expires, user.id_usuario_estabelecimento]
+    );
+
+    const recoveryLink =
+      `${env.FRONTEND_BASE_URL.replace(/\/$/, "")}/reset.html?token=${encodeURIComponent(token)}`;
+
+    await sendRecoveryEmail(email, recoveryLink);
+
+    res.json({
+      message: "Link de recuperacao enviado para o email."
+    });
+  })
+);
+
+router.post(
+  "/partner/reset-password",
+  validate(partnerResetPasswordSchema),
+  asyncHandler(async (req, res) => {
+    const { token, senha } = req.validated.body;
+
+    const users = await query(
+      `SELECT
+        id_usuario_estabelecimento,
+        reset_token_expira_em
+       FROM usuarios_estabelecimento
+       WHERE reset_token = ?
+       LIMIT 1`,
+      [token]
+    );
+
+    const user = users[0];
+
+    if (!user) {
+      throw new AppError(400, "Token invalido.");
+    }
+
+    if (new Date(user.reset_token_expira_em) < new Date()) {
+      throw new AppError(400, "Token expirado.");
+    }
+
+    const senhaHash = await hashPassword(senha);
+
+    await query(
+      `UPDATE usuarios_estabelecimento
+       SET senha_hash = ?,
+           reset_token = NULL,
+           reset_token_expira_em = NULL
+       WHERE id_usuario_estabelecimento = ?`,
       [senhaHash, user.id_usuario_estabelecimento]
     );
 
     res.json({
-      message: "Senha atualizada com sucesso. Voce ja pode entrar na area de gestao."
+      message: "Senha redefinida com sucesso."
     });
   })
 );

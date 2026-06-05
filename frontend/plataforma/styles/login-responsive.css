@@ -1,0 +1,605 @@
+/*==============================
+LOGIN GESTAO
+==============================*/
+
+.login-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding-top: 32px;
+    padding: 32px 20px;
+    background:
+        radial-gradient(circle at top right, rgba(240, 96, 0, 0.16), transparent 20%),
+        radial-gradient(circle at left center, rgba(240, 96, 0, 0.1), transparent 24%),
+        linear-gradient(180deg, #fff8f2 0%, #ffffff 100%);
+}
+
+.login-main {
+    width: 100%;
+    max-width: 520px;
+}
+
+.login-card {
+    padding: 32px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(240, 96, 0, 0.1);
+    box-shadow: 0 24px 48px rgba(18, 18, 18, 0.1);
+}
+
+.login-voltar {
+    display: inline-flex;
+    margin-bottom: 22px;
+    color: #555555;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 26px;
+}
+
+.login-brand img {
+    width: 86px;
+    height: 86px;
+    object-fit: contain;
+}
+
+.login-brand h1 {
+    font-size: clamp(1.9rem, 4vw, 2.4rem);
+    line-height: 1.05;
+    color: #171717;
+}
+
+.login-texto {
+    margin-top: 10px;
+    color: #666666;
+    line-height: 1.6;
+}
+
+.login-form {
+    display: grid;
+    gap: 16px;
+}
+
+.login-campo {
+    display: grid;
+    gap: 8px;
+}
+
+.login-campo span {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #444444;
+}
+
+.login-campo input {
+    min-height: 54px;
+    padding: 0 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    font: inherit;
+    color: #171717;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-campo input:focus {
+    border-color: rgba(240, 96, 0, 0.42);
+    box-shadow: 0 0 0 4px rgba(240, 96, 0, 0.08);
+}
+
+.login-botao {
+    width: 100%;
+    margin-top: 6px;
+}
+
+.login-extra {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.login-link-button {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: var(--Laranja-vibrante);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+}
+
+.login-recovery-form {
+    margin-top: 16px;
+    padding: 18px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, #fffaf6 0%, #fff2e8 100%);
+    border: 1px solid rgba(240, 96, 0, 0.12);
+}
+
+.login-recovery-texto {
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 6px;
+}
+
+.login-botao-secundario {
+    width: 100%;
+    min-height: 52px;
+}
+
+@media (max-width: 900px) {
+    body {
+        padding-top: 0;
+    }
+
+    header {
+        position: static;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        padding: 12px 16px 14px;
+        gap: 10px 12px;
+    }
+
+    .area-logo {
+        grid-column: 1;
+        grid-row: 1;
+        gap: 4px;
+    }
+
+    nav {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .header-nav-list {
+        display: grid;
+        grid-template-columns: repeat(4, 40px);
+        justify-content: end;
+        justify-items: end;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .search-item {
+        grid-column: 1 / -1;
+        max-width: none;
+        order: 2;
+        margin-top: 2px;
+    }
+
+    .header-nav-list li:not(.header-login-item) {
+        order: 0;
+    }
+
+    .header-login-link {
+        width: 40px;
+        height: 40px;
+    }
+
+    .search-form {
+        min-height: 40px;
+        padding: 4px 4px 4px 12px;
+        gap: 6px;
+        border-radius: 14px;
+    }
+
+    .search {
+        font-size: 0.82rem;
+    }
+
+    .btn-buscar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn-buscar img {
+        width: 14px;
+        height: 14px;
+    }
+
+    nav a {
+        width: 40px;
+        height: 40px;
+    }
+
+    nav a img {
+        width: 17px;
+        height: 17px;
+    }
+
+    .gestao-page {
+        padding-top: 0;
+        padding-left: 0;
+    }
+
+    .header-gestao {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 22px 20px;
+        box-shadow: var(--Header-sombra);
+    }
+
+    .header-gestao nav ul {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .gestao-main {
+        margin-left: 0;
+        padding: 28px 20px 44px;
+    }
+
+    .gestao-page-header,
+    .gestao-hero {
+        padding: 26px 22px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .gestao-metricas,
+    .gestao-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gestao-tabela-linha,
+    .gestao-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gestao-config-item,
+    .gestao-produto-item,
+    .gestao-meta-topo {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .gestao-zona-risco-conteudo {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-nitrogo-resumo {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-inline-affix {
+        max-width: 100%;
+    }
+
+    .admin-feature-toggle {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .gestao-painel-acoes {
+        justify-content: stretch;
+    }
+
+    .gestao-image-preview {
+        width: 100%;
+        max-height: 220px;
+    }
+
+    .admin-horarios {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 520px) {
+    body {
+        padding-top: 0;
+    }
+
+    .brand-text h1 {
+        font-size: 1.12rem;
+    }
+
+    .area-logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .gestao-campo input[type="file"] {
+        padding: 10px 12px;
+        font-size: 0.84rem;
+    }
+
+    .gestao-campo input[type="file"]::file-selector-button {
+        display: block;
+        width: 100%;
+        margin: 0 0 10px;
+        text-align: center;
+    }
+
+    .admin-field-hint {
+        font-size: 0.78rem;
+        line-height: 1.45;
+    }
+
+    .gestao-image-preview {
+        border-radius: 14px;
+        max-height: 180px;
+    }
+
+    .brand-tag {
+        font-size: 0.48rem;
+        letter-spacing: 0.18em;
+    }
+
+    .search-form {
+        padding-left: 10px;
+        min-height: 36px;
+    }
+
+    .header-nav-list {
+        grid-template-columns: repeat(4, 36px);
+        gap: 6px;
+    }
+
+    nav a {
+        width: 36px;
+        height: 36px;
+    }
+
+    .header-login-link {
+        width: 36px;
+        height: 36px;
+    }
+
+    .search {
+        font-size: 0.76rem;
+    }
+
+    .btn-buscar {
+        width: 28px;
+        height: 28px;
+    }
+
+    .login-card {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+
+    .login-brand {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .login-brand img {
+        width: 74px;
+        height: 74px;
+    }
+
+    .login-recovery-form {
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .header-gestao {
+        padding: 18px 16px;
+    }
+
+    .area-logo-gestao img {
+        width: 72px;
+        height: 72px;
+    }
+
+    .header-gestao nav a {
+        min-height: 48px;
+        padding: 12px 14px;
+    }
+
+    .gestao-main {
+        margin-left: 0;
+        padding: 22px 16px 38px;
+    }
+
+    .gestao-page-header,
+    .gestao-hero,
+    .gestao-card-metrica,
+    .gestao-painel {
+        border-radius: 22px;
+    }
+
+    .gestao-page-header,
+    .gestao-hero {
+        padding: 22px 18px;
+    }
+
+    .gestao-painel {
+        padding: 20px;
+    }
+
+    .gestao-form-bloco {
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .gestao-painel-acoes .btn-primario {
+        width: 100%;
+    }
+
+    .gestao-painel-acoes-risco,
+    .gestao-painel-acoes-risco .btn-perigo {
+        width: 100%;
+    }
+
+    .gestao-status-item,
+    .gestao-ranking li,
+    .gestao-tabela-linha,
+    .gestao-meta-item,
+    .gestao-alerta,
+    .gestao-config-item,
+    .gestao-produto-item {
+        padding: 16px;
+    }
+
+    .admin-inline-affix {
+        max-width: 100%;
+    }
+
+    .carrossel-indicadores {
+        bottom: 28px;
+    }
+}
+
+/*==============================
+RESPONSIVIDADE GLOBAL
+==============================*/
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 0;
+    }
+
+    header {
+        padding: 12px 14px 14px;
+        gap: 10px;
+    }
+
+    .area-logo {
+        gap: 4px;
+    }
+
+    .area-logo img {
+        width: 54px;
+        height: 54px;
+    }
+
+    .brand-text {
+        gap: 1px;
+    }
+
+    .brand-tag {
+        font-size: 0.5rem;
+        letter-spacing: 0.18em;
+    }
+
+    .brand-text h1 {
+        font-size: 1.08rem;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    .header-nav-list {
+        gap: 6px;
+    }
+
+    .search-item {
+        width: 100%;
+    }
+
+    .search-form {
+        min-height: 38px;
+        padding: 4px 4px 4px 10px;
+    }
+
+    .opcoes,
+    .cards-benefios,
+    .parceiros-fundadores-grid,
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .estabelecimentos,
+    .perfil-page,
+    .restaurante-page,
+    .acessibilidade-page {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .carrinho-page,
+    .sobre-nos-main,
+    .central-ajuda-main {
+        width: min(100% - 24px, 1200px);
+    }
+
+    .gestao-page-header,
+    .gestao-page-acoes,
+    .perfil-card-topo,
+    .restaurante-card-topo,
+    .central-ajuda-hero-acoes,
+    .checkout-opcoes-linha,
+    .card-acoes {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .gestao-page-acoes .btn-primario,
+    .gestao-page-acoes .btn-secundario,
+    .perfil-edit-btn,
+    .restaurante-card-topo span,
+    .central-ajuda-hero-acoes .btn-contato,
+    .card-acoes .btn-primario,
+    .card-acoes .btn-secundario {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .gestao-tabela {
+        overflow-x: auto;
+    }
+
+    .gestao-tabela-linha {
+        min-width: 640px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 0;
+    }
+
+    .brand-text h1,
+    .brand-text-gestao h1 {
+        font-size: 1rem;
+    }
+
+    .brand-tag,
+    .brand-tag-gestao {
+        letter-spacing: 0.2em;
+    }
+
+    .btn-buscar,
+    nav a {
+        width: 34px;
+        height: 34px;
+    }
+
+    .central-ajuda-hero-conteudo h1,
+    .perfil-hero h1,
+    .restaurante-hero-conteudo h1,
+    .section-heading h2 {
+        word-break: break-word;
+    }
+
+    .restaurante-meta span,
+    .perfil-badges span,
+    .perfil-preferencias span {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .card img,
+    .restaurante-hero img,
+    .carrinho-item img {
+        max-width: 100%;
+    }
+}
+

@@ -6,7 +6,7 @@ const menuItemBody = z.object({
   descricao: z.string().trim().max(255).nullable().optional(),
   preco: z.number().positive(),
   preco_promocional: z.number().positive().nullable().optional(),
-  imagem: z.string().trim().max(255).nullable().optional(),
+  imagem: z.string().trim().max(5_000_000).nullable().optional(),
   categoria: z.string().trim().max(100).nullable().optional(),
   ativo: z.boolean().optional()
 });

@@ -1,0 +1,589 @@
+/*==============================
+ALERTAS E PROMPTS
+==============================*/
+
+body.eatgo-modal-aberto {
+    overflow: hidden;
+}
+
+.eatgo-toast-area {
+    position: fixed;
+    top: 144px;
+    right: 20px;
+    z-index: 2200;
+    display: grid;
+    gap: 10px;
+}
+
+.eatgo-toast {
+    min-width: 260px;
+    max-width: 360px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(17, 17, 17, 0.94);
+    color: var(--Branco);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+    transform: translateY(-8px);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.eatgo-toast.ativa {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.eatgo-toast-success {
+    background: linear-gradient(135deg, #ff7a1a 0%, #f06000 100%);
+}
+
+.eatgo-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2300;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(15, 15, 15, 0.48);
+    backdrop-filter: blur(10px);
+}
+
+.eatgo-modal-overlay[hidden] {
+    display: none !important;
+}
+
+.eatgo-modal {
+    width: min(100%, 520px);
+    padding: 28px;
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at top right, rgba(240, 96, 0, 0.12), transparent 26%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, #fff8f2 100%);
+    border: 1px solid rgba(240, 96, 0, 0.12);
+    box-shadow: 0 26px 54px rgba(0, 0, 0, 0.18);
+}
+
+.eatgo-modal-topo p,
+.eatgo-modal-topo h2 {
+    margin: 0;
+}
+
+.eatgo-modal-tag {
+    display: inline-flex;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(240, 96, 0, 0.1);
+    color: var(--Laranja-vibrante);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.eatgo-modal-topo h2 {
+    font-size: 1.7rem;
+    color: #171717;
+    line-height: 1.05;
+}
+
+.eatgo-modal-topo p {
+    margin-top: 12px;
+    color: #666666;
+    line-height: 1.65;
+}
+
+.eatgo-modal-body {
+    margin-top: 20px;
+}
+
+.eatgo-modal-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.eatgo-modal-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.eatgo-modal-campo span {
+    color: #171717;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.eatgo-modal-campo input {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    padding: 14px 16px;
+    font: inherit;
+    background: #ffffff;
+    color: #171717;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.eatgo-modal-campo input:focus {
+    border-color: rgba(240, 96, 0, 0.28);
+    box-shadow: 0 0 0 4px rgba(240, 96, 0, 0.08);
+}
+
+.eatgo-modal-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.eatgo-modal-btn {
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 18px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.eatgo-modal-btn:hover {
+    transform: translateY(-1px);
+}
+
+.eatgo-modal-btn-primario {
+    background: linear-gradient(135deg, #ff7a1a 0%, #f06000 100%);
+    color: var(--Branco);
+    box-shadow: 0 14px 26px rgba(240, 96, 0, 0.22);
+}
+
+.eatgo-modal-btn-secundario {
+    background: rgba(240, 96, 0, 0.08);
+    color: var(--Laranja-vibrante);
+    box-shadow: inset 0 0 0 1px rgba(240, 96, 0, 0.18);
+}
+
+@media (max-width: 520px) {
+    .eatgo-toast-area {
+        top: 196px;
+        left: 16px;
+        right: 16px;
+    }
+
+    .eatgo-toast {
+        min-width: 0;
+        max-width: none;
+    }
+
+    .eatgo-modal-overlay {
+        padding: 16px;
+    }
+
+    .eatgo-modal {
+        padding: 22px 18px;
+        border-radius: 24px;
+    }
+
+    .eatgo-modal-topo h2 {
+        font-size: 1.45rem;
+    }
+
+    .eatgo-modal-acoes {
+        flex-direction: column;
+    }
+
+    .eatgo-modal-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*==============================
+RESPONSIVO GLOBAL REFINADO
+==============================*/
+
+@media (max-width: 768px) {
+    body.home-page {
+        padding-top: 0;
+    }
+
+    .home-page .brand-tag {
+        display: block;
+        font-size: 0.44rem;
+        letter-spacing: 0.16em;
+        color: #ffb37d;
+    }
+
+    .home-page .carrossel {
+        display: none;
+    }
+
+    .home-page .destaques,
+    .home-page .opcoes,
+    .home-page .estabelecimentos,
+    .home-page .cards-benefios,
+    .home-page .parceiros-fundadores {
+        margin-top: 12px;
+        margin-bottom: 20px;
+    }
+
+    .home-page .destaques,
+    .home-page .estabelecimentos,
+    .home-page .cards-benefios,
+    .home-page .parceiros-fundadores {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .btn-primario,
+    .btn-secundario,
+    .btn-contato,
+    .btn-enviar,
+    .perfil-edit-btn,
+    .checkout-button,
+    .limpar-button,
+    .cadastro-btn-primario,
+    .cadastro-btn-secundario,
+    .eatgo-modal-btn,
+    .btn-admin-acao {
+        min-height: 36px;
+        padding: 8px 12px;
+        font-size: 0.82rem;
+    }
+
+    .header-login-link,
+    nav a,
+    .home-page .header-login-link,
+    .home-page nav a {
+        transform: none;
+    }
+
+    .card,
+    .card-benefio,
+    .parceiro-fundador,
+    .gestao-card-metrica,
+    .gestao-painel,
+    .carrinho-section,
+    .checkout-section,
+    .perfil-resumo,
+    .perfil-card,
+    .acessibilidade-card,
+    .cadastro-card,
+    .restaurante-card,
+    .restaurante-info-lateral,
+    .restaurante-cardapio,
+    .sobre-nos-hero-conteudo,
+    .sobre-nos-hero-card,
+    .sobre-metrica-card,
+    .sobre-bloco,
+    .sobre-pilar-card,
+    .sobre-nos-contato,
+    .central-ajuda-hero-conteudo,
+    .central-ajuda-hero-card,
+    .central-ajuda-busca,
+    .central-ajuda-faq,
+    .canal-card,
+    .central-ajuda-contato,
+    .eatgo-modal {
+        border-radius: 20px;
+        box-shadow: 0 12px 24px rgba(18, 18, 18, 0.07);
+    }
+
+    .card-conteudo,
+    .gestao-painel,
+    .carrinho-section,
+    .checkout-section,
+    .perfil-resumo,
+    .perfil-card,
+    .acessibilidade-card,
+    .cadastro-card,
+    .restaurante-card,
+    .restaurante-info-lateral,
+    .restaurante-cardapio,
+    .sobre-nos-hero-conteudo,
+    .sobre-nos-hero-card,
+    .sobre-metrica-card,
+    .sobre-bloco,
+    .sobre-pilar-card,
+    .sobre-nos-contato,
+    .central-ajuda-hero-conteudo,
+    .central-ajuda-hero-card,
+    .central-ajuda-busca,
+    .central-ajuda-faq,
+    .canal-card,
+    .central-ajuda-contato,
+    .eatgo-modal {
+        padding: 18px;
+    }
+
+    .card img,
+    .home-page .destaques .card img,
+    .home-page .estabelecimentos .card img {
+        height: 160px;
+    }
+
+    .card h3,
+    .card-benefio h3,
+    .parceiro-fundador h3,
+    .canal-card h3,
+    .gestao-topo-card h3 {
+        font-size: 0.95rem;
+    }
+
+    .card p,
+    .card-benefio p,
+    .parceiro-fundador p,
+    .canal-card p,
+    .gestao-card-metrica p,
+    .checkout-section p,
+    .perfil-resumo-texto p,
+    .restaurante-texto,
+    .sobre-nos-subtitulo,
+    .central-ajuda-subtitulo {
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+
+    .eatgo-modal-overlay {
+        padding: 12px;
+    }
+
+    .eatgo-modal {
+        width: min(100%, 430px);
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .eatgo-modal-topo h2 {
+        font-size: 1.3rem;
+    }
+
+    .eatgo-modal-topo p {
+        margin-top: 8px;
+        font-size: 0.84rem;
+        line-height: 1.5;
+    }
+
+    .eatgo-modal-tag {
+        margin-bottom: 8px;
+        padding: 4px 9px;
+        font-size: 0.68rem;
+    }
+
+    .eatgo-modal-body {
+        margin-top: 14px;
+    }
+
+    .eatgo-modal-form-grid {
+        gap: 10px;
+    }
+
+    .eatgo-modal-campo {
+        gap: 6px;
+    }
+
+    .eatgo-modal-campo span {
+        font-size: 0.84rem;
+    }
+
+    .eatgo-modal-campo input {
+        padding: 10px 12px;
+        border-radius: 14px;
+        font-size: 0.84rem;
+    }
+
+    .eatgo-modal-acoes {
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .restaurante-cardapio .card-acoes .btn-primario,
+    .restaurante-cardapio .card-acoes .btn-secundario {
+        min-height: 32px;
+        padding: 6px 10px;
+        font-size: 0.74rem;
+        line-height: 1.1;
+        width: auto;
+        min-width: 0;
+        flex: 0 1 auto;
+    }
+
+    .restaurante-cardapio .card-acoes {
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 520px) {
+    body.home-page {
+        padding-top: 0;
+    }
+
+    .home-page .brand-tag {
+        font-size: 0.4rem;
+        letter-spacing: 0.14em;
+    }
+
+    .home-page .destaques,
+    .home-page .estabelecimentos,
+    .home-page .cards-benefios,
+    .home-page .parceiros-fundadores {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    .btn-primario,
+    .btn-secundario,
+    .btn-contato,
+    .btn-enviar,
+    .perfil-edit-btn,
+    .checkout-button,
+    .limpar-button,
+    .cadastro-btn-primario,
+    .cadastro-btn-secundario,
+    .eatgo-modal-btn,
+    .btn-admin-acao {
+        min-height: 34px;
+        padding: 7px 10px;
+        font-size: 0.78rem;
+    }
+
+    .card,
+    .card-benefio,
+    .parceiro-fundador,
+    .gestao-card-metrica,
+    .gestao-painel,
+    .carrinho-section,
+    .checkout-section,
+    .perfil-resumo,
+    .perfil-card,
+    .acessibilidade-card,
+    .cadastro-card,
+    .restaurante-card,
+    .restaurante-info-lateral,
+    .restaurante-cardapio,
+    .sobre-nos-hero-conteudo,
+    .sobre-nos-hero-card,
+    .sobre-metrica-card,
+    .sobre-bloco,
+    .sobre-pilar-card,
+    .sobre-nos-contato,
+    .central-ajuda-hero-conteudo,
+    .central-ajuda-hero-card,
+    .central-ajuda-busca,
+    .central-ajuda-faq,
+    .canal-card,
+    .central-ajuda-contato,
+    .eatgo-modal {
+        border-radius: 18px;
+    }
+
+    .card-conteudo,
+    .gestao-painel,
+    .carrinho-section,
+    .checkout-section,
+    .perfil-resumo,
+    .perfil-card,
+    .acessibilidade-card,
+    .cadastro-card,
+    .restaurante-card,
+    .restaurante-info-lateral,
+    .restaurante-cardapio,
+    .sobre-nos-hero-conteudo,
+    .sobre-nos-hero-card,
+    .sobre-metrica-card,
+    .sobre-bloco,
+    .sobre-pilar-card,
+    .sobre-nos-contato,
+    .central-ajuda-hero-conteudo,
+    .central-ajuda-hero-card,
+    .central-ajuda-busca,
+    .central-ajuda-faq,
+    .canal-card,
+    .central-ajuda-contato,
+    .eatgo-modal {
+        padding: 16px;
+    }
+
+    .card img,
+    .home-page .destaques .card img,
+    .home-page .estabelecimentos .card img,
+    .carrinho-item img,
+    .restaurante-hero img {
+        height: 148px;
+    }
+
+    .section-heading h2,
+    .cards-benefios-topo h2,
+    .parceiros-fundadores-topo h2,
+    .gestao-page-header h2,
+    .gestao-hero h2,
+    .central-ajuda-topo-secao h2,
+    .central-ajuda-busca h2,
+    .sobre-bloco-conteudo h2,
+    .sobre-nos-contato-conteudo h2 {
+        font-size: 1.45rem;
+    }
+
+    .eatgo-modal-overlay {
+        padding: 10px;
+    }
+
+    .eatgo-modal {
+        width: min(100%, 360px);
+        padding: 14px;
+        border-radius: 16px;
+    }
+
+    .eatgo-modal-topo h2 {
+        font-size: 1.16rem;
+    }
+
+    .eatgo-modal-topo p {
+        font-size: 0.78rem;
+    }
+
+    .eatgo-modal-campo input {
+        padding: 9px 11px;
+        font-size: 0.8rem;
+    }
+
+    .home-page .destaques .card-acoes .btn-primario,
+    .home-page .destaques .card-acoes .btn-secundario {
+        min-height: 28px;
+        padding: 5px 9px;
+        font-size: 0.64rem;
+        line-height: 1;
+        flex: 0 0 auto;
+    }
+
+    .home-page .estabelecimentos .card-acoes .btn-primario,
+    .home-page .estabelecimentos .card-acoes .btn-secundario {
+        min-height: 26px;
+        padding: 4px 8px;
+        font-size: 0.68rem;
+        line-height: 1;
+        flex: 0 0 auto;
+    }
+
+    .restaurante-cardapio .card-acoes .btn-primario,
+    .restaurante-cardapio .card-acoes .btn-secundario {
+        min-height: 30px;
+        padding: 5px 8px;
+        font-size: 0.7rem;
+        line-height: 1.05;
+        width: auto;
+        min-width: 0;
+        flex: 0 1 auto;
+    }
+
+    .restaurante-cardapio .card-acoes {
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+}

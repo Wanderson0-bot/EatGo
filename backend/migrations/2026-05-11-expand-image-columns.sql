@@ -1,0 +1,7 @@
+USE eatgo;
+
+ALTER TABLE estabelecimentos
+  MODIFY COLUMN logo_url MEDIUMTEXT NULL;
+
+ALTER TABLE cardapio
+  MODIFY COLUMN imagem MEDIUMTEXT NULL;

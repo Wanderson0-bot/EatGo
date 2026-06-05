@@ -1,6 +1,8 @@
 // Middlewares finais para rotas inexistentes e erros centralizados.
 const AppError = require("../lib/app-error");
 
+
+
 function notFoundHandler(req, res, next) {
   next(new AppError(404, "Rota nao encontrada."));
 }

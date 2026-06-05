@@ -1,12 +1,12 @@
 // Endpoint público responsável por criar pedidos no marketplace.
 const { Router } = require("express");
-const rateLimit = require("express-rate-limit");
 const { pool } = require("../../config/database");
 const env = require("../../config/env");
 const asyncHandler = require("../../lib/async-handler");
 const AppError = require("../../lib/app-error");
 const {
   createCheckoutPreference,
+  createPaymentRefund,
   fetchPaymentDetails,
   normalizeMercadoPagoStatus
 } = require("../../services/payment.service");
@@ -19,13 +19,6 @@ const {
 } = require("../../schemas/order.schema");
 
 const router = Router();
-
-const createOrderRateLimit = rateLimit({
-  windowMs: 10 * 60 * 1000,
-  limit: 20,
-  standardHeaders: true,
-  legacyHeaders: false
-});
 
 async function syncOrderPayment({
   connection = pool,
@@ -66,15 +59,15 @@ async function syncOrderPayment({
 
   if (nextPaymentStatus === "aprovado") {
     if (currentOrder.status === "aguardando_pagamento") {
-      nextStatus = "aberto";
+      nextStatus = "pago";
     }
   } else if (["cancelado", "rejeitado"].includes(nextPaymentStatus)) {
-    if (["aguardando_pagamento", "aberto"].includes(currentOrder.status)) {
+    if (["aguardando_pagamento", "pago"].includes(currentOrder.status)) {
       nextStatus = "cancelado";
     }
   } else if (
     nextPaymentStatus === "pendente" &&
-    ["aguardando_pagamento", "aberto"].includes(currentOrder.status) &&
+    ["aguardando_pagamento", "pago"].includes(currentOrder.status) &&
     currentOrder.pagamento_status !== "aprovado"
   ) {
     nextStatus = "aguardando_pagamento";
@@ -106,9 +99,32 @@ async function syncOrderPayment({
   }
 }
 
+async function getOrderItems(connection, orderIds) {
+  if (!orderIds.length) {
+    return [];
+  }
+
+  const [items] = await connection.query(
+    `SELECT
+      pi.id_pedido,
+      pi.id_cardapio,
+      c.nome,
+      c.descricao,
+      pi.quantidade,
+      pi.preco_unitario,
+      pi.subtotal
+    FROM pedido_item pi
+    INNER JOIN cardapio c
+      ON c.id_cardapio = pi.id_cardapio
+    WHERE pi.id_pedido IN (?)`,
+    [orderIds]
+  );
+
+  return items;
+}
+
 router.post(
   "/",
-  createOrderRateLimit,
   validate(createOrderSchema),
   asyncHandler(async (req, res) => {
     const connection = await pool.getConnection();
@@ -120,6 +136,7 @@ router.post(
         tipo_recebimento,
         forma_pagamento,
         observacao = null,
+        nitrogo_utilizado = false,
         itens
       } = req.validated.body;
 
@@ -178,7 +195,10 @@ router.post(
           nome,
           possui_entrega,
           taxa_entrega,
-          mercado_pago_access_token
+          mercado_pago_access_token,
+          nitrogo_ativo,
+          nitrogo_cupom_valor,
+          nitrogo_frete_gratis
         FROM estabelecimentos
         WHERE id_estabelecimento = ? AND ativo = 1
         LIMIT 1`,
@@ -191,12 +211,26 @@ router.post(
         throw new AppError(404, "Estabelecimento nao encontrado.");
       }
 
-      const taxaEntrega =
+      const taxaEntregaBase =
         tipo_recebimento === "entrega" && establishment.possui_entrega
           ? Number(establishment.taxa_entrega || 0)
           : 0;
+      const nitrogoCupomAplicado =
+        Boolean(nitrogo_utilizado) && Number(establishment.nitrogo_ativo) === 1
+          ? Number(establishment.nitrogo_cupom_valor || 0)
+          : 0;
+      const nitrogoFreteGratisAplicado =
+        Boolean(nitrogo_utilizado) &&
+        Number(establishment.nitrogo_ativo) === 1 &&
+        tipo_recebimento === "entrega" &&
+        Number(establishment.nitrogo_frete_gratis) === 1;
+      const taxaEntrega = nitrogoFreteGratisAplicado ? 0 : taxaEntregaBase;
+      const desconto = Math.min(
+        subtotal + taxaEntrega,
+        Math.max(nitrogoCupomAplicado, 0)
+      );
       const taxaServico = 0;
-      const total = subtotal + taxaEntrega + taxaServico;
+      const total = Math.max(subtotal + taxaEntrega + taxaServico - desconto, 0);
       const [clientRows] = await connection.query(
         `SELECT id_cliente, nome, email, telefone, endereco
         FROM clientes
@@ -221,11 +255,14 @@ router.post(
           tipo_recebimento,
           forma_pagamento,
           subtotal,
+          desconto,
+          nitrogo_cupom_aplicado,
+          nitrogo_frete_gratis_aplicado,
           taxa_entrega,
           taxa_servico,
           total,
           observacao
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           id_cliente,
           id_estabelecimento,
@@ -235,6 +272,9 @@ router.post(
           tipo_recebimento,
           forma_pagamento,
           subtotal,
+          desconto,
+          nitrogoCupomAplicado > 0 ? 1 : 0,
+          nitrogoFreteGratisAplicado ? 1 : 0,
           taxaEntrega,
           taxaServico,
           total,
@@ -272,6 +312,7 @@ router.post(
         customer: client,
         items: normalizedItems,
         tipoRecebimento: tipo_recebimento,
+        desconto,
         taxaEntrega,
         taxaServico
       });
@@ -411,8 +452,20 @@ router.get(
         p.pagamento_gateway,
         p.tipo_recebimento,
         p.forma_pagamento,
+        p.desconto,
+        p.nitrogo_cupom_aplicado,
+        p.nitrogo_frete_gratis_aplicado,
         p.total,
         p.observacao,
+        p.cancelamento_status,
+        p.cancelamento_motivo,
+        p.cancelamento_solicitado_em,
+        p.cancelamento_analisado_em,
+        p.cancelamento_valor_reembolso,
+        p.cancelamento_taxa,
+        p.cancelamento_analise_texto,
+        p.pagamento_reembolsado_valor,
+        p.pagamento_reembolsado_em,
         p.criado_em,
         p.atualizado_em,
         e.nome AS estabelecimento_nome
@@ -424,7 +477,23 @@ router.get(
       [id_cliente]
     );
 
-    res.json({ data: orders });
+    const items = await getOrderItems(pool, orders.map((order) => order.id_pedido));
+    const itemsByOrderId = new Map();
+
+    items.forEach((item) => {
+      if (!itemsByOrderId.has(item.id_pedido)) {
+        itemsByOrderId.set(item.id_pedido, []);
+      }
+
+      itemsByOrderId.get(item.id_pedido).push(item);
+    });
+
+    res.json({
+      data: orders.map((order) => ({
+        ...order,
+        itens: itemsByOrderId.get(order.id_pedido) || []
+      }))
+    });
   })
 );
 
@@ -433,15 +502,22 @@ router.patch(
   validate(cancelClientOrderSchema),
   asyncHandler(async (req, res) => {
     const { id } = req.validated.params;
-    const { id_cliente } = req.validated.body;
+    const { id_cliente, motivo } = req.validated.body;
 
     const [orders] = await pool.query(
       `SELECT
-        id_pedido,
-        status,
-        pagamento_status
-      FROM pedidos
-      WHERE id_pedido = ? AND id_cliente = ?
+        p.id_pedido,
+        p.id_estabelecimento,
+        p.status,
+        p.pagamento_status,
+        p.pagamento_id_externo,
+        p.total,
+        p.cancelamento_status,
+        e.mercado_pago_access_token
+      FROM pedidos p
+      INNER JOIN estabelecimentos e
+        ON e.id_estabelecimento = p.id_estabelecimento
+      WHERE p.id_pedido = ? AND p.id_cliente = ?
       LIMIT 1`,
       [id, id_cliente]
     );
@@ -452,23 +528,94 @@ router.patch(
       throw new AppError(404, "Pedido nao encontrado.");
     }
 
-    if (["cancelado", "entregue", "saiu_para_entrega", "preparando"].includes(order.status)) {
-      throw new AppError(400, "Este pedido nao pode mais ser cancelado pelo cliente.");
+    if (order.status === "cancelado") {
+      throw new AppError(400, "Este pedido ja foi cancelado.");
     }
 
-    await pool.query(
-      `UPDATE pedidos
-      SET status = 'cancelado',
-          pagamento_status = CASE
-            WHEN pagamento_status = 'pendente' THEN 'cancelado'
-            ELSE pagamento_status
-          END,
-          atualizado_em = CURRENT_TIMESTAMP
-      WHERE id_pedido = ? AND id_cliente = ?`,
-      [id, id_cliente]
-    );
+    if (order.cancelamento_status && order.cancelamento_status !== "nenhum") {
+      throw new AppError(400, "Ja existe uma solicitacao de cancelamento para este pedido.");
+    }
 
-    res.json({ message: "Pedido cancelado com sucesso." });
+    if (["pago", "confirmado"].includes(order.status)) {
+      if (order.pagamento_status === "aprovado" && !order.pagamento_id_externo) {
+        throw new AppError(
+          400,
+          "Nao foi possivel iniciar o reembolso automatico deste pagamento. Contate o suporte."
+        );
+      }
+
+      if (order.pagamento_status === "aprovado" && order.pagamento_id_externo) {
+        await createPaymentRefund({
+          accessToken: order.mercado_pago_access_token,
+          paymentId: order.pagamento_id_externo
+        });
+      }
+
+      await pool.query(
+        `UPDATE pedidos
+        SET status = 'cancelado',
+            cancelamento_status = 'aprovado_total',
+            cancelamento_motivo = ?,
+            cancelamento_solicitado_em = CURRENT_TIMESTAMP,
+            cancelamento_analisado_em = CURRENT_TIMESTAMP,
+            cancelamento_valor_reembolso = ?,
+            cancelamento_taxa = 0,
+            cancelamento_analise_texto = 'Cancelamento automatico antes do preparo.',
+            pagamento_reembolsado_valor = ?,
+            pagamento_reembolsado_em = CURRENT_TIMESTAMP,
+            pagamento_status = CASE
+              WHEN pagamento_status = 'aprovado' THEN 'cancelado'
+              ELSE pagamento_status
+            END,
+            atualizado_em = CURRENT_TIMESTAMP
+        WHERE id_pedido = ? AND id_cliente = ?`,
+        [motivo, Number(order.total || 0), Number(order.total || 0), id, id_cliente]
+      );
+
+      res.json({
+        message: "Pedido cancelado com reembolso total antes do preparo.",
+        data: {
+          status: "cancelado",
+          cancelamento_status: "aprovado_total",
+          pagamento_reembolsado_valor: Number(order.total || 0)
+        }
+      });
+      return;
+    }
+
+    if (order.status === "preparando") {
+      await pool.query(
+        `UPDATE pedidos
+        SET cancelamento_status = 'em_analise',
+            cancelamento_motivo = ?,
+            cancelamento_solicitado_em = CURRENT_TIMESTAMP,
+            atualizado_em = CURRENT_TIMESTAMP
+        WHERE id_pedido = ? AND id_cliente = ?`,
+        [motivo, id, id_cliente]
+      );
+
+      res.json({
+        message: "Seu pedido esta em preparo. O cancelamento foi enviado para analise do estabelecimento.",
+        data: {
+          status: order.status,
+          cancelamento_status: "em_analise"
+        }
+      });
+      return;
+    }
+
+    if (order.status === "saiu_para_entrega") {
+      throw new AppError(
+        400,
+        "Este pedido ja saiu para entrega. O cancelamento esta bloqueado ou pode ter taxa, geralmente sem reembolso."
+      );
+    }
+
+    if (order.status === "entregue") {
+      throw new AppError(400, "Pedidos entregues nao podem ser cancelados.");
+    }
+
+    throw new AppError(400, "Este pedido nao pode ser cancelado neste momento.");
   })
 );
 

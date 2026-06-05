@@ -8,6 +8,7 @@ const createOrderSchema = z.object({
     tipo_recebimento: z.enum(["entrega", "retirada"]).default("entrega"),
     forma_pagamento: z.string().trim().min(2).max(30),
     observacao: z.string().trim().max(255).nullable().optional(),
+    nitrogo_utilizado: z.boolean().optional(),
     itens: z.array(
       z.object({
         id_cardapio: z.number().int().positive(),
@@ -40,7 +41,21 @@ const getClientOrdersSchema = z.object({
 
 const cancelClientOrderSchema = z.object({
   body: z.object({
-    id_cliente: z.number().int().positive()
+    id_cliente: z.number().int().positive(),
+    motivo: z.string().trim().min(5).max(255)
+  }),
+  params: z.object({
+    id: z.coerce.number().int().positive()
+  }),
+  query: z.object({}).optional()
+});
+
+const reviewCancellationSchema = z.object({
+  body: z.object({
+    decisao: z.enum(["aprovar_total", "aprovar_parcial", "negar"]),
+    valor_reembolso: z.number().nonnegative().optional(),
+    taxa: z.number().nonnegative().optional(),
+    analise_texto: z.string().trim().min(5).max(255)
   }),
   params: z.object({
     id: z.coerce.number().int().positive()
@@ -51,7 +66,7 @@ const cancelClientOrderSchema = z.object({
 const updateOrderStatusSchema = z.object({
   body: z.object({
     status: z.enum([
-      "aberto",
+      "pago",
       "confirmado",
       "preparando",
       "saiu_para_entrega",
@@ -69,6 +84,7 @@ module.exports = {
   cancelClientOrderSchema,
   createOrderSchema,
   getClientOrdersSchema,
+  reviewCancellationSchema,
   syncOrderPaymentSchema,
   updateOrderStatusSchema
 };

@@ -1,0 +1,273 @@
+/*==============================
+SIDEBAR DA GESTAO
+==============================*/
+
+.gestao-page {
+    min-height: 100vh;
+    padding-top: 0;
+    padding-left: 280px;
+    background:
+        radial-gradient(circle at top left, rgba(240, 96, 0, 0.08), transparent 22%),
+        linear-gradient(180deg, #fff8f2 0%, #ffffff 45%);
+}
+
+.header-gestao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 32px;
+    width: 280px;
+    height: 100vh;
+    padding: 28px 20px;
+    background: var(--Header-fundo);
+    border-right: 1px solid var(--Header-borda);
+    border-bottom: 0;
+    box-shadow: 18px 0 36px rgba(0, 0, 0, 0.18);
+}
+
+.area-logo-gestao {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.area-logo-gestao img {
+    width: 82px;
+    height: 82px;
+    object-fit: contain;
+    margin-right: -10px;
+}
+
+.brand-text-gestao {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.brand-text-gestao h1 {
+    color: var(--Branco);
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+.brand-tag-gestao {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ffb37d;
+}
+
+.header-gestao nav {
+    flex: 1;
+}
+
+.header-gestao nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.header-gestao nav li {
+    list-style: none;
+}
+
+.header-gestao nav a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 52px;
+    justify-content: flex-start;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--Branco);
+    text-decoration: none;
+    font-size: 0.98rem;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.header-gestao nav a:hover,
+.header-gestao nav a:focus-visible {
+    background: rgba(240, 96, 0, 0.22);
+    transform: translateX(4px);
+    outline: none;
+}
+
+.header-gestao nav a.ativo {
+    background: linear-gradient(135deg, #ff7a1a 0%, #f06000 100%);
+    color: var(--Branco);
+    box-shadow: 0 14px 28px rgba(240, 96, 0, 0.24);
+}
+
+.admin-main {
+    display: grid;
+    gap: 24px;
+}
+
+body.admin-locked .admin-dashboard {
+    display: none !important;
+}
+
+.admin-login-shell {
+    display: grid;
+    place-items: center;
+    min-height: 58vh;
+}
+
+.admin-login-card {
+    width: min(520px, 100%);
+    padding: 32px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 24px 48px rgba(18, 18, 18, 0.1);
+}
+
+.admin-login-card h3 {
+    margin-top: 10px;
+    font-size: 2rem;
+    color: #171717;
+}
+
+.admin-login-card p {
+    margin-top: 14px;
+    color: #666666;
+    line-height: 1.7;
+}
+
+.admin-login-hint {
+    min-height: 24px;
+    color: #b42318;
+    font-size: 0.92rem;
+}
+
+.admin-field-hint {
+    margin-top: 8px;
+    color: #777777;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.admin-dashboard {
+    display: grid;
+    gap: 24px;
+}
+
+.admin-hidden {
+    display: none !important;
+}
+
+.admin-table-note {
+    display: inline-flex;
+    margin-left: 8px;
+    color: #777777;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.admin-nitrogo-resumo {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.admin-nitrogo-pill {
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #fff8f2 100%);
+    border: 1px solid rgba(240, 96, 0, 0.08);
+}
+
+.admin-nitrogo-pill span {
+    display: block;
+    color: #8a4b1e;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.admin-nitrogo-pill strong {
+    display: block;
+    margin-top: 8px;
+    color: #171717;
+    font-size: 1.25rem;
+}
+
+.admin-performance-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.admin-performance-badge.is-ok {
+    background: rgba(34, 197, 94, 0.12);
+    color: #15803d;
+}
+
+.admin-performance-badge.is-warning {
+    background: rgba(245, 158, 11, 0.14);
+    color: #b45309;
+}
+
+.admin-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #444444;
+}
+
+.admin-switch input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--Laranja-vibrante);
+}
+
+.admin-inline-affix {
+    max-width: 160px;
+}
+
+.admin-inline-affix input {
+    min-height: 42px;
+}
+
+.admin-feature-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, #ffffff 0%, #fff8f2 100%);
+    border: 1px solid rgba(240, 96, 0, 0.08);
+}
+
+.admin-feature-toggle strong {
+    color: #171717;
+    font-size: 1.05rem;
+}
+
+.admin-feature-toggle p {
+    margin-top: 8px;
+    color: #666666;
+    line-height: 1.6;
+}
+

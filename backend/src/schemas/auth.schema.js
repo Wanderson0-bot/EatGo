@@ -12,9 +12,16 @@ const partnerLoginSchema = z.object({
 
 const partnerRecoverPasswordSchema = z.object({
   body: z.object({
-    email: z.string().trim().email(),
-    cnpj: z.string().trim().min(14).max(18),
-    nova_senha: z.string().min(8).max(128)
+    email: z.string().trim().email()
+  }),
+  params: z.object({}).optional(),
+  query: z.object({}).optional()
+});
+
+const partnerResetPasswordSchema = z.object({
+  body: z.object({
+    token: z.string().trim().min(32).max(256),
+    senha: z.string().min(8).max(128)
   }),
   params: z.object({}).optional(),
   query: z.object({}).optional()
@@ -31,5 +38,6 @@ const adminLoginSchema = z.object({
 module.exports = {
   partnerLoginSchema,
   partnerRecoverPasswordSchema,
+  partnerResetPasswordSchema,
   adminLoginSchema
 };

@@ -110,6 +110,7 @@ async function createCheckoutPreference({
   customer,
   items,
   tipoRecebimento,
+  desconto = 0,
   taxaEntrega,
   taxaServico
 }) {
@@ -120,7 +121,35 @@ async function createCheckoutPreference({
     );
   }
 
-  const baseReturnUrl = `${env.FRONTEND_BASE_URL.replace(/\/$/, "")}/carrinho.html`;
+  const normalizedDiscount = Math.max(Number(desconto || 0), 0);
+  const expandedItems = items.flatMap((item) =>
+    Array.from({ length: Number(item.quantidade || 0) }, (_, index) => ({
+      id: `${String(item.id_cardapio)}-${index + 1}`,
+      title: item.nome,
+      description: item.descricao || establishment.nome || "Item do pedido",
+      quantity: 1,
+      unit_price: Number(item.preco_unitario),
+      currency_id: "BRL"
+    }))
+  );
+
+  let remainingDiscount = normalizedDiscount;
+  const discountedItems = expandedItems.map((item) => {
+    if (remainingDiscount <= 0) {
+      return item;
+    }
+
+    const available = Number(item.unit_price || 0);
+    const itemDiscount = Math.min(available, remainingDiscount);
+    remainingDiscount -= itemDiscount;
+
+    return {
+      ...item,
+      unit_price: Number((available - itemDiscount).toFixed(2))
+    };
+  });
+
+  const baseReturnUrl = `${env.FRONTEND_BASE_URL.replace(/\/$/, "")}/perfil.html`;
   const returnQuery = `pedido=${encodeURIComponent(orderId)}&ref=${encodeURIComponent(reference)}`;
   const preferencePayload = {
     external_reference: reference,
@@ -139,14 +168,7 @@ async function createCheckoutPreference({
     notification_url: notificationUrl,
     auto_return: "approved",
     items: [
-      ...items.map((item) => ({
-        id: String(item.id_cardapio),
-        title: item.nome,
-        description: item.descricao || establishment.nome || "Item do pedido",
-        quantity: item.quantidade,
-        unit_price: Number(item.preco_unitario),
-        currency_id: "BRL"
-      })),
+      ...discountedItems,
       ...(Number(taxaEntrega) > 0
         ? [
             {
@@ -197,8 +219,32 @@ async function fetchPaymentDetails({ accessToken, paymentId }) {
   });
 }
 
+async function createPaymentRefund({ accessToken, paymentId, amount = null }) {
+  if (!accessToken) {
+    throw new AppError(
+      400,
+      "Este estabelecimento ainda nao configurou a conta do Mercado Pago."
+    );
+  }
+
+  if (!paymentId) {
+    throw new AppError(400, "Identificador do pagamento nao informado.");
+  }
+
+  const payload = amount != null ? { amount: Number(amount) } : null;
+
+  return sendJsonRequest(`${MERCADO_PAGO_API_BASE}/v1/payments/${paymentId}/refunds`, {
+    method: "POST",
+    payload,
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+}
+
 module.exports = {
   createCheckoutPreference,
   fetchPaymentDetails,
+  createPaymentRefund,
   normalizeMercadoPagoStatus
 };

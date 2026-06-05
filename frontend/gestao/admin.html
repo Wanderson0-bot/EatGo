@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../plataforma/style.css">
+    <title>Admin da Plataforma | EatGo</title>
+</head>
+
+<body class="gestao-page admin-page admin-locked">
+    <header class="header-gestao">
+        <div class="area-logo-gestao">
+            <img src="../plataforma/src/logo.png" alt="Logo da EatGo">
+            <div class="brand-text-gestao">
+                <h1>EatGo</h1>
+                <p class="brand-tag-gestao">ADMIN</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a class="ativo" href="#visao-geral">Visão geral</a></li>
+                <li><a href="#cadastrar-estabelecimento">Cadastrar estabelecimento</a></li>
+                <li><a href="#editar-estabelecimento">Editar estabelecimento</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="gestao-main admin-main">
+        <section class="gestao-page-header" id="visao-geral">
+            <div>
+                <p class="section-tag">Acesso restrito</p>
+                <h2>Painel administrativo da plataforma</h2>
+                <p class="gestao-page-texto">
+                    Esta área não está vinculada ao fluxo público e concentra uma visão geral da operação da EatGo.
+                </p>
+            </div>
+            <div class="gestao-page-acoes">
+                <button class="btn-secundario btn-admin-acao" type="button" id="admin-refresh">Atualizar dados</button>
+                <button class="btn-primario btn-admin-acao" type="button" id="admin-logout">Sair</button>
+            </div>
+        </section>
+
+        <section class="admin-login-shell" id="admin-login-shell">
+            <article class="admin-login-card">
+                <p class="section-tag">Ambiente restrito</p>
+                <h3>Entrar no painel administrativo</h3>
+                <p id="admin-login-feedback">Informe a senha administrativa para liberar esta área.</p>
+                <form class="gestao-form-stack" id="admin-login-form">
+                    <label class="gestao-campo">
+                        <span>Senha administrativa</span>
+                        <div class="gestao-input-affix">
+                            <input type="password" id="admin-password" name="senha" placeholder="Digite a senha"
+                                autocomplete="current-password">
+                            <button type="button" class="gestao-toggle-senha" data-target="admin-password"
+                                aria-label="Mostrar senha">Ver</button>
+                        </div>
+                    </label>
+                    <div class="gestao-painel-acoes">
+                        <button class="btn-primario btn-admin-acao" type="submit">Entrar</button>
+                    </div>
+                </form>
+            </article>
+        </section>
+
+        <section class="admin-dashboard admin-hidden" id="admin-dashboard">
+            <section class="gestao-metricas" aria-label="Indicadores gerais da plataforma">
+                <article class="gestao-card-metrica">
+                    <span class="gestao-card-label">Estabelecimentos ativos</span>
+                    <strong id="admin-estabelecimentos-ativos">0</strong>
+                    <p id="admin-estabelecimentos-resumo">Sem dados carregados</p>
+                </article>
+
+                <article class="gestao-card-metrica">
+                    <span class="gestao-card-label">Clientes ativos</span>
+                    <strong id="admin-clientes-total">0</strong>
+                    <p>Base geral de consumidores cadastrados</p>
+                </article>
+
+                <article class="gestao-card-metrica">
+                    <span class="gestao-card-label">Faturamento aprovado</span>
+                    <strong id="admin-faturamento-aprovado">R$ 0,00</strong>
+                    <p id="admin-pagamentos-aprovados">0 pagamentos aprovados</p>
+                </article>
+            </section>
+
+            <section class="gestao-grid">
+                <article class="gestao-painel" id="remocao-estabelecimento">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Monitoramento</p>
+                            <h3>Pedidos recentes da plataforma</h3>
+                        </div>
+                    </div>
+
+                    <div class="gestao-tabela" id="admin-orders-table">
+                        <div class="gestao-tabela-linha gestao-tabela-head">
+                            <span>Pedido</span>
+                            <span>Cliente</span>
+                            <span>Estabelecimento</span>
+                            <span>Status</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="gestao-painel" id="estabelecimentos">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Operação</p>
+                            <h3>Estabelecimentos com maior movimento</h3>
+                        </div>
+                    </div>
+
+                    <div class="gestao-tabela" id="admin-establishments-table">
+                        <div class="gestao-tabela-linha gestao-tabela-head">
+                            <span>Loja</span>
+                            <span>Categoria</span>
+                            <span>Pedidos</span>
+                            <span>Faturamento</span>
+                            <span>Ações</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="gestao-grid gestao-grid-wide">
+                <article class="gestao-painel" id="nitrogo-controle-plataforma">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Controle global</p>
+                            <h3>Ativar NitroGo na plataforma</h3>
+                            <p class="gestao-page-texto">Quando desligado, a seção NitroGo desaparece da home e os
+                                benefícios deixam de ser exibidos para os clientes.</p>
+                        </div>
+                    </div>
+
+                    <div class="admin-feature-toggle">
+                        <div>
+                            <strong id="admin-nitrogo-status-label">NitroGo desativado</strong>
+                            <p id="admin-nitrogo-status-texto">A seção não está visível na home.</p>
+                        </div>
+                        <button type="button" class="btn-primario btn-admin-acao" id="admin-toggle-nitrogo">Ativar
+                            NitroGo</button>
+                    </div>
+                </article>
+            </section>
+
+            <section class="gestao-grid gestao-grid-wide">
+                <article class="gestao-painel" id="nitrogo-analise">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">NitroGo</p>
+                            <h3>Análise mensal de desempenho</h3>
+                            <p class="gestao-page-texto">Acompanhe o desempenho mensal de todos os estabelecimentos para
+                                identificar quem precisa de apoio comercial.</p>
+                        </div>
+                    </div>
+
+                    <div class="admin-nitrogo-resumo">
+                        <div class="admin-nitrogo-pill">
+                            <span>Mês analisado</span>
+                            <strong id="admin-analise-mes-atual">-</strong>
+                        </div>
+                        <div class="admin-nitrogo-pill">
+                            <span>Parceiros em apoio</span>
+                            <strong id="admin-nitrogo-beneficiados-total">0</strong>
+                        </div>
+                        <div class="admin-nitrogo-pill">
+                            <span>Recomendados para análise</span>
+                            <strong id="admin-nitrogo-recomendados-total">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="gestao-tabela" id="admin-monthly-performance-table">
+                        <div class="gestao-tabela-linha gestao-tabela-head">
+                            <span>Estabelecimento</span>
+                            <span>Pedidos no mês</span>
+                            <span>Faturamento no mês</span>
+                            <span>Comparativo</span>
+                            <span>Status</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="gestao-grid gestao-grid-wide">
+                <article class="gestao-painel" id="nitrogo-beneficios">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Programa de assistência</p>
+                            <h3>Escolher estabelecimentos beneficiários</h3>
+                            <p class="gestao-page-texto">Defina quais parceiros recebem cupom subsidiado 100% pela EatGo
+                                e frete grátis exclusivo para uso dentro da plataforma e no próprio estabelecimento.</p>
+                        </div>
+                    </div>
+
+                    <div class="gestao-tabela" id="admin-nitrogo-benefits-table">
+                        <div class="gestao-tabela-linha gestao-tabela-head">
+                            <span>Estabelecimento</span>
+                            <span>Ativar benefício</span>
+                            <span>Cupom subsidiado</span>
+                            <span>Frete grátis</span>
+                            <span>Ação</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="gestao-grid gestao-grid-wide">
+                <article class="gestao-painel" id="melhores-clientes">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Clientes</p>
+                            <h3>Melhores clientes da plataforma</h3>
+                        </div>
+                    </div>
+
+                    <div class="gestao-tabela" id="admin-top-clients-table">
+                        <div class="gestao-tabela-linha gestao-tabela-head">
+                            <span>Cliente</span>
+                            <span>Email</span>
+                            <span>Telefone</span>
+                            <span>Pedidos</span>
+                            <span>Total Gasto</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section class="gestao-grid">
+                <article class="gestao-painel" id="pedidos">
+                    <div class="gestao-topo-card">
+                        <div>
+                            <p class="section-tag">Atenção</p>
+                            <h3>Remoção de Estabelecimento</h3>
+                        </div>
+                    </div>
+
+                    <form class="gestao-form-stack" id="admin-remove">
+                        <div class="gestao-form-bloco">
+                            <div class="gestao-form-bloco-topo">
+                                <h4>Remover Estabelecimento</h4>
+                                <p>Insira o ID do estabelecimento para removê-lo permanentemente do sistema.</p>
+                            </div>
+                            <label class="gestao-campo">
+                                <span>ID do Estabelecimento</span>
+                                <input type="number" id="remove-establishment-id"
+                                    placeholder="Digite o ID do estabelecimento" required>
+                            </label>
+                            <div style="margin-top: 18px;">
+                                <button type="button" id="remove-establishment-btn" class="btn-secundario">Remover
+                                    Estabelecimento</button>
+                            </div>
+                        </div>
+                    </form>
+                </article>
+            </section>
+
+            <section class="gestao-painel-cadastro admin-hidden" id="cadastrar-estabelecimento">
+                <div class="gestao-topo-card">
+                    <div>
+                        <p class="section-tag">Parceiros</p>
+                        <h2>Cadastrar novo estabelecimento</h2>
+                        <p class="gestao-page-texto">Adicione um novo parceiro à plataforma preenchendo os dados do
+                            estabelecimento abaixo.</p>
+                    </div>
+                </div>
+
+                <div class="gestao-form-bloco admin-hidden" id="admin-form-mode-panel">
+                    <div class="gestao-form-bloco-topo">
+                        <h4>Modo de edição ativo</h4>
+                        <p id="admin-form-mode-label">Nenhum estabelecimento carregado.</p>
+                    </div>
+                </div>
+
+                <form class="gestao-form-stack" id="admin-cadastro-form">
+                    <div class="gestao-form-bloco">
+                        <div class="gestao-form-bloco-topo">
+                            <h4>Dados do estabelecimento</h4>
+                        </div>
+                        <div class="gestao-form-grid">
+                            <label class="gestao-campo">
+                                <span>Nome do estabelecimento</span>
+                                <input type="text" name="nome" placeholder="Ex.: Bistrô da Praça" required>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>CNPJ</span>
+                                <div class="gestao-escolha-linha">
+                                    <label class="gestao-choice-chip">
+                                        <input type="radio" name="cnpj_tipo" value="com" checked>
+                                        <span>Com CNPJ</span>
+                                    </label>
+                                    <label class="gestao-choice-chip">
+                                        <input type="radio" name="cnpj_tipo" value="sem">
+                                        <span>Sem CNPJ</span>
+                                    </label>
+                                </div>
+                                <input type="text" id="admin-cnpj" name="cnpj" placeholder="00.000.000/0000-00"
+                                    inputmode="numeric">
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Email comercial</span>
+                                <input type="email" name="email" placeholder="contato@estabelecimento.com" required>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Nome do responsável</span>
+                                <input type="text" name="responsavel_nome" placeholder="Ex.: Maria Oliveira" required>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Telefone</span>
+                                <input type="tel" id="admin-telefone" name="telefone" placeholder="(11) 99999-0000"
+                                    inputmode="numeric" required>
+                            </label>
+                            <label class="gestao-campo gestao-campo-full">
+                                <span>Endereço</span>
+                                <input type="text" name="endereco" placeholder="Rua, número, bairro e cidade" required>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Categoria</span>
+                                <select name="categoria" required>
+                                    <option value="">Selecione</option>
+                                    <option>Comida brasileira</option>
+                                    <option>Hamburgueria</option>
+                                    <option>Pizzaria</option>
+                                    <option>Sushi</option>
+                                </select>
+                            </label>
+                            <div class="gestao-campo">
+                                <span>Horário de funcionamento</span>
+
+                                <div class="admin-horarios">
+                                    <input type="time" name="horario_abertura" required>
+                                    <input type="time" name="horario_fechamento" required>
+                                </div>
+                            </div>
+                            <label class="gestao-campo gestao-campo-full">
+                                <span>Logo do estabelecimento</span>
+                                <input type="file" name="logo_file" accept="image/*">
+                                <input type="hidden" name="logo_url">
+                                <img class="gestao-image-preview" id="admin-logo-preview" alt="Prévia da logo" hidden>
+                                <small class="admin-field-hint">Selecione uma imagem do seu computador. A logo será salva no banco de dados.</small>
+                            </label>
+                            <label class="gestao-campo gestao-campo-full">
+                                <span>Access token do Mercado Pago</span>
+                                <div class="gestao-input-affix">
+                                    <input type="password" id="admin-mercado-pago-token"
+                                        name="mercado_pago_access_token" placeholder="APP_USR-...">
+                                    <button type="button" class="gestao-toggle-senha"
+                                        data-target="admin-mercado-pago-token" aria-label="Mostrar token">Ver</button>
+                                </div>
+                            </label>
+                            <label class="gestao-campo">
+                                <span>Senha de acesso da gestão</span>
+                                <div class="gestao-input-affix">
+                                    <input type="password" id="admin-senha-acesso" name="senha_acesso"
+                                        placeholder="Minimo de 8 caracteres" minlength="8" required>
+                                    <button type="button" class="gestao-toggle-senha" data-target="admin-senha-acesso"
+                                        aria-label="Mostrar senha">Ver</button>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="gestao-form-bloco">
+                        <div class="gestao-form-bloco-topo">
+                            <h4>Detalhes operacionais</h4>
+                        </div>
+                        <div class="gestao-form-grid">
+                            <div class="gestao-campo gestao-campo-full">
+                                <span>Possui forma de entrega?</span>
+                                <div class="gestao-escolha-linha">
+                                    <label class="gestao-choice-chip">
+                                        <input type="radio" name="possui_entrega" value="1" checked>
+                                        <span>Sim</span>
+                                    </label>
+                                    <label class="gestao-choice-chip">
+                                        <input type="radio" name="possui_entrega" value="0">
+                                        <span>Não</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <label class="gestao-campo gestao-campo-full" id="admin-taxa-entrega-campo">
+                                <span>Taxa de entrega</span>
+                                <div class="gestao-input-affix gestao-input-affix-prefix">
+                                    <span class="gestao-prefixo">R$</span>
+                                    <input type="text" id="admin-taxa-entrega" name="taxa_entrega" placeholder="0,00"
+                                        inputmode="decimal">
+                                </div>
+                            </label>
+                            <label class="gestao-campo gestao-campo-full">
+                                <span>Descrição</span>
+                                <textarea name="descricao" rows="4"
+                                    placeholder="Conte um pouco sobre seu estabelecimento..."></textarea>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="gestao-form-bloco">
+                        <div class="gestao-form-bloco-topo">
+                            <h4>Cardápio inicial</h4>
+                            <p>Se quiser, já cadastre alguns itens para o estabelecimento entrar na plataforma com o
+                                menu pronto.</p>
+                        </div>
+                        <div class="gestao-painel-acoes gestao-painel-acoes-start">
+                            <button type="button" class="btn-secundario btn-admin-acao"
+                                id="admin-add-menu-item">Adicionar item</button>
+                        </div>
+                        <div class="admin-menu-lista" id="admin-menu-items"></div>
+                    </div>
+
+                    <div class="gestao-painel-acoes">
+                        <button type="button" class="btn-secundario btn-admin-acao admin-hidden"
+                            id="admin-cancel-edit-inline">Cancelar edição</button>
+                        <button type="submit" class="btn-primario btn-admin-acao">Cadastrar estabelecimento</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="gestao-painel-cadastro admin-hidden" id="editar-estabelecimento">
+                <div class="gestao-topo-card">
+                    <div>
+                        <p class="section-tag">Edição</p>
+                        <h2>Editar estabelecimento e cardápio</h2>
+                        <p class="gestao-page-texto">Carregue um estabelecimento pelo ID ou use o botão de editar na
+                            lista para ajustar dados e itens do cardápio.</p>
+                    </div>
+                </div>
+
+                <div class="gestao-form-stack">
+                    <div class="gestao-form-bloco">
+                        <div class="gestao-form-bloco-topo">
+                            <h4>Carregar estabelecimento</h4>
+                            <p>Informe o ID para buscar os dados atuais antes de editar.</p>
+                        </div>
+                        <div class="gestao-form-grid">
+                            <label class="gestao-campo">
+                                <span>ID do estabelecimento</span>
+                                <input type="number" id="admin-edit-establishment-id" placeholder="Ex.: 3">
+                            </label>
+                        </div>
+                        <div class="gestao-painel-acoes gestao-painel-acoes-start">
+                            <button type="button" class="btn-secundario btn-admin-acao"
+                                id="admin-load-establishment">Carregar para editar</button>
+                            <button type="button" class="btn-secundario btn-admin-acao admin-hidden"
+                                id="admin-cancel-edit">Cancelar edição</button>
+                        </div>
+                    </div>
+
+                    <div class="gestao-form-bloco admin-hidden" id="admin-edit-mode-panel">
+                        <div class="gestao-form-bloco-topo">
+                            <h4>Estabelecimento em edição</h4>
+                            <p id="admin-edit-mode-label">Nenhum estabelecimento carregado.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+    <script src="../plataforma/js/admin/core.js"></script>
+    <script src="../plataforma/js/admin/overview.js"></script>
+    <script src="../plataforma/js/admin/form-enhancements.js"></script>
+    <script src="../plataforma/js/admin/boot.js"></script>
+</body>
+
+</html>
